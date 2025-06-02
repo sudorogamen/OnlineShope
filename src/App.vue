@@ -1,5 +1,5 @@
 <template>
-  <div class="app_container">
+  <div class="App">
     <MyHeader />
     <RouterView></RouterView>
   </div>
@@ -19,7 +19,7 @@ export default {
 };
 </script>
 <style>
-.app_container {
+.App {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 5px;

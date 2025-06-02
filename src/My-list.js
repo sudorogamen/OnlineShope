@@ -319,6 +319,17 @@ const MyLlist = [
       "https://i.postimg.cc/Qt5ngRWH/4.webp",
     ],
   },
+  {
+    id: 15,
+    name: "Product Name",
+    src: [
+      "https://i.postimg.cc/WzvY5XMS/1.webp",
+      "https://i.postimg.cc/zvFt6K7N/2.webp",
+      "https://i.postimg.cc/mZY5PWsn/3.webp",
+      "https://i.postimg.cc/c4d5Yk1L/5.webp",
+      "https://i.postimg.cc/02ZXCGrd/6.webp",
+    ],
+  },
 ];
 
 let arr = ["2999", "1560", "1999", "1299", "3500", "4290"];
