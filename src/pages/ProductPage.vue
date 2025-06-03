@@ -81,8 +81,8 @@ close(e){
   position: absolute;
   left:  -5px;
   top: 0;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   background-image: url(https://i.postimg.cc/SNhcFFwS/circle-arrow-left.png);
   background-position: center;
