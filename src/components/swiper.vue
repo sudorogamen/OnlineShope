@@ -107,19 +107,15 @@ img {
   width: 100%;
   height: 100%;
 }
-.swiper-button-next{
-    right: 0; 
-     border: 1px red solid;
-     
-    }
-    .swiper-button-prev {
-        left: 0;
-        border: 1px red solid;
+.swiper-button-next {
+  right: 0;
+}
+.swiper-button-prev {
+  left: 0;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
   color: rgba(255, 89, 0, 1);
-  
 }
 </style>

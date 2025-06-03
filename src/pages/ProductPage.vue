@@ -141,4 +141,47 @@ close(e){
   align-items: center;
   justify-content: center;
 }
+
+
+
+@media (max-width: 399px) {
+  
+.slider_comp{
+  position: relative;
+    width: 150px;
+  height: 250px;
+}
+.slider_container {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slider_container.open{
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  .slider_comp{
+  position: relative;
+    width: 200px;
+  height: 300px;
+}
+}
+
+}
+
+
+
+
+
+
+
+
+
+
 </style>
