@@ -82,7 +82,7 @@ export default {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    position: relative;
+    border-radius: 12px;
 }
 
 
@@ -93,6 +93,7 @@ export default {
 }
 
 .swiper-slide {
+ 
   text-align: center;
   display: flex;
   justify-content: center;
@@ -106,5 +107,7 @@ export default {
 }
 .swiper-button-next::after , .swiper-button-prev::after{
 color: rgba(255, 89, 0, 1);
+right: -60px;
 }
+
 </style>
