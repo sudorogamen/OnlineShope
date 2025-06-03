@@ -135,8 +135,13 @@ height: 15px;
   opacity: 1;
   height: 400px;
 }
-
-.modal_overlay.open {
+.modal_overlay{
+   display: none;
+  }
+  .modal_overlay.open {
+z-index:2;
+    
+    display: block;
   position: fixed;
   top: 0;
   left: 0;

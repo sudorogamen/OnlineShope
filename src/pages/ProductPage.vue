@@ -2,7 +2,7 @@
   <div class="prodct_container">
     <RouterLink to="/" class="back_link"></RouterLink>
     <div class="slider_container">
-      <swiper class="slider_comp" @click="open" :slides="this.product.src"></swiper>
+      <swiper class="slider_comp" @openFull="open" :slides="this.product.src"></swiper>
       <div class="product_overlay" @click="close($event)"></div>
     </div>
     <div class="prodct_text_content">
@@ -37,6 +37,7 @@ open(){
 },
 close(e){
     document.querySelector('.slider_container').classList.remove('open')
+
     e.target.classList.remove("open");
 }
 
@@ -46,29 +47,21 @@ close(e){
 </script>
 <style scoped>
 
-.product_overlay.open::after {
-  content: '';
-  display: none;
-  width: 35px;
-height: 35px;
- object-fit: cover;
-  background-image: url(https://i.postimg.cc/xCGGykVz/cross-mark.png);
-  background-position: center;
-  background-size:100% 100%;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left:  0px;
-  z-index: 1;
-} 
+
+
+.product_overlay{
+   display: none;
+  }
+
+
 
 .product_overlay.open {
     background: #000;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100%;    
+  display: block;
   height: 100%;
 }
 
@@ -81,7 +74,7 @@ height: 35px;
   width: 100%;
   display: flex;
   gap: 100px;
-  z-index: 5;
+  z-index: 0;
 }
 
 .back_link {
@@ -119,8 +112,7 @@ height: 35px;
     width: 700px;
   height: 750px;
 }
-.slider_comp::after {
-  display: block;}
+
 
 
 }
