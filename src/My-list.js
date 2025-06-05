@@ -331,7 +331,7 @@ const MyLlist = [
     ],
   },
 ];
-
+  document.body.style.width = document.sc
 let arr = ["2999", "1560", "1999", "1299", "3500", "4290"];
 function getRandomInt(min, max) {
   min = Math.ceil(min); // округляем минимальное значение до ближайшего большего целого
