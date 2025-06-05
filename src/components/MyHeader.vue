@@ -120,7 +120,7 @@ height: 15px;
 }
 
 .cart_modal {
-  z-index: 4;
+  z-index: -1;
   position: absolute;
   top: 70px;
   right: -1px;
@@ -132,6 +132,7 @@ height: 15px;
 }
 
 .cart_modal.open {
+  z-index: 4;
   opacity: 1;
   height: 400px;
 }
