@@ -237,6 +237,7 @@ height: auto;
 /* */
 
 .prodct_container {
+  gap: 10px;
   flex-direction: column;
   padding-bottom: 20px;
 }
