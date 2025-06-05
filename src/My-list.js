@@ -334,15 +334,15 @@ const MyLlist = [
   document.body.style.width = document.sc
 let arr = ["2999", "1560", "1999", "1299", "3500", "4290"];
 function getRandomInt(min, max) {
-  min = Math.ceil(min); // округляем минимальное значение до ближайшего большего целого
-  max = Math.floor(max); // округляем максимальное значение до ближайшего меньшего целого
-  return Math.floor(Math.random() * (max - min + 1)) + min; // генерируем случайное целое число
+  min = Math.ceil(min); 
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 // document.querySelector('asd').classList.remove
 for (let index = 0; index < MyLlist.length; index++) {
   MyLlist[index].price = arr[getRandomInt(0, arr.length - 1)];
   MyLlist[index].id = index;
-  MyLlist[index].desc = "Some kind of product description in a few lines for more detailed information";
+  MyLlist[index].desc = "Some kind of product description in a some lines for more detailed information";
 }
 
 export default MyLlist;

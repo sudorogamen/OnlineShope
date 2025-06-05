@@ -15,17 +15,14 @@
         </div>
      <div class="prodct_desc">{{ this.product.desc }}</div>
      <div class="total_price">
-      <p>Total price:</p>
-      <p>{{ this.productCount *  this.product.price }}</p>
-     </div>
-     <div class="buy_box">
-       <div class="prodct_count_box">
+      <p>Total price: {{ this.productCount *  this.product.price }}</p>
+         <div class="prodct_count_box">
          <button class="couny_minus_btn" @click="()=>{if(productCount>1)this.productCount--}">-</button>
          <div class="prodct_count">{{ this.productCount }}</div>
          <button class="couny_plus_btn" @click="this.productCount++">+</button>
        </div>
-        <button @click="" class="buy-button">Add to cart</button>
      </div>
+     <button @click="" class="buy-button">Add to cart</button>
     </div>
   </div>
 </template>
@@ -164,12 +161,13 @@ height: auto;
 
 .prodct_text_content {
   
-  width: 320px;
+  width: 350px;
   min-height: 100%;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: start;
+  gap: 10px;
 }
 .prodct_title {
 }
@@ -179,6 +177,7 @@ height: auto;
 
 
 .prodct_desc {
+  flex: 0 1 40%;
 }
 
 
@@ -186,31 +185,30 @@ height: auto;
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
-.buy_box{
-  display: flex;
 
-  gap: 5px;
-  width: 100%;
-}
 
 .prodct_count_box {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
+  background: rgba(10, 15, 21, 1);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
 }
-.couny_minus_btn {
+.couny_minus_btn,
+.couny_plus_btn {
+
 }
 .prodct_count {
-}
-.couny_plus_btn {
 }
 
 .buy-button {
   width: 100%;
   color: white;
   background: rgba(255, 89, 0, 1);
-  flex: 1 1 auto;
   height: 40px;
   border-radius: 10px;
   font-weight: 900;
@@ -226,6 +224,20 @@ height: auto;
 
 
 
+
+@media (max-width: 1440px) {
+  
+  .slider_container.open{
+  height: 100%;
+  .slider_comp{
+  position: relative;
+  margin-inline: 10px;
+  width: 500px;
+  height: 700px;
+  
+  }
+  }
+}
 
 
 
@@ -271,24 +283,8 @@ height: auto;
 
 
 @media (max-width:440px) {
-  /*   
-  .slider_comp{
-  position: relative;
-    width: 150px;
-  height: 250px;
-}
-.slider_container {
-  position: relative;
-  width: 200px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-*/
-  .slider_container.open{
 
-  height: 100%;
+  .slider_container.open{
   .slider_comp{
   position: relative;
  margin-inline: 10px;
@@ -297,26 +293,26 @@ height: auto;
 }
 }
 
-
-
+.slider_container {
+  width: 100%;
+}
+.prodct_text_content {
+  width: 100%;
+}
 
 /* */
 
 
 .back_link {
 }
-.slider_container {
-  width: 100%;
-}
+
 .slider_comp {
 }
 .product_overlay {
 }
 .close_btn {
 }
-.prodct_text_content {
-  width: 100%;
-}
+
 .prodct_title {
 }
 .prodct_price {
