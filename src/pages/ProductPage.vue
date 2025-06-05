@@ -14,12 +14,18 @@
           ><span> ₽</span>
         </div>
      <div class="prodct_desc">{{ this.product.desc }}</div>
-     <div class="prodct_count_box">
-       <button class="couny_minus_btn">-</button>
-       <div class="prodct_count">{{ this.productCount }}</div>
-       <button class="couny_plus_btn">+</button>
+     <div class="total_price">
+      <p>Total price:</p>
+      <p>{{ this.productCount *  this.product.price }}</p>
      </div>
-      <button @click="" class="buy-button">Add to cart</button>
+     <div class="buy_box">
+       <div class="prodct_count_box">
+         <button class="couny_minus_btn" @click="()=>{if(productCount>1)this.productCount--}">-</button>
+         <div class="prodct_count">{{ this.productCount }}</div>
+         <button class="couny_plus_btn" @click="this.productCount++">+</button>
+       </div>
+        <button @click="" class="buy-button">Add to cart</button>
+     </div>
     </div>
   </div>
 </template>
@@ -30,7 +36,7 @@ export default {
   components: { swiper },
   data() {
     return {
-      productCount:0
+      productCount:1
 
 
     };
@@ -169,22 +175,25 @@ height: auto;
 }
 .prodct_price {
 }
-.buy-button {
-  color: white;
-  background: rgba(255, 89, 0, 1);
-  width: 100%;
-  height: 40px;
-  border-radius: 10px;
-  font-weight: 900;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 
 .prodct_desc {
 }
+
+
+.total_price{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.buy_box{
+  display: flex;
+
+  gap: 5px;
+  width: 100%;
+}
+
 .prodct_count_box {
   display: flex;
   align-items: center;
@@ -195,6 +204,20 @@ height: auto;
 .prodct_count {
 }
 .couny_plus_btn {
+}
+
+.buy-button {
+  width: 100%;
+  color: white;
+  background: rgba(255, 89, 0, 1);
+  flex: 1 1 auto;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
