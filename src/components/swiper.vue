@@ -40,11 +40,10 @@ export default {
   },
   mounted() {
     this.swiper = new Swiper(".swiper-container", {
-      modules: [Navigation, Pagination, Scrollbar],
+      modules: [Navigation, Pagination],
 
       loop: true,
       slidesPerView: 1,
-      spaceBetween: 30,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -53,14 +52,7 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      scrollbar: {
-        el: ".swiper-scrollbar",
-        draggable: true,
-      },
-      breakpoints: {
-        // 768: { slidesPerView: 2 },
-        // 1024: { slidesPerView: 3 }
-      },
+  
     });
   },
   beforeDestroy() {

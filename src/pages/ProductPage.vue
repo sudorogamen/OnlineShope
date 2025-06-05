@@ -9,7 +9,10 @@
     </div>
     <div class="prodct_text_content">
      <div class="prodct_title">{{ this.product.name }}</div>
-     <div class="prodct_price">{{ this.product.price }}</div>
+     <div class="product_price">
+          <span class="price">{{ this.product.price }}</span
+          ><span> ₽</span>
+        </div>
      <div class="prodct_desc">{{ this.product.desc }}</div>
      <div class="prodct_count_box">
        <button class="couny_minus_btn">-</button>
@@ -200,9 +203,31 @@ height: auto;
 
 
 
-@media (max-width: 450px) {
-/*   
-.slider_comp{
+
+@media (max-width: 900px) {
+  
+  
+  .prodct_container {
+    font-size: 24px;
+    gap: 10px;
+    justify-content: space-between;
+  }
+.slider_container  {
+  width: 400px;
+  height: auto;
+}
+}
+
+
+
+
+
+
+
+
+@media (max-width:440px) {
+  /*   
+  .slider_comp{
   position: relative;
     width: 150px;
   height: 250px;
@@ -216,7 +241,7 @@ height: auto;
   align-items: center;
 }
 */
-.slider_container.open{
+  .slider_container.open{
 
   position: fixed;
   top: 0;
@@ -225,11 +250,12 @@ height: auto;
   height: 100%;
   .slider_comp{
   position: relative;
+ margin-inline: 10px;
    width: 100%;
+   height: auto;
+   object-fit: contain;
 }
 }
-
-
 
 
 
@@ -245,7 +271,6 @@ height: auto;
 }
 .slider_container {
   width: 100%;
-  height: auto;
 }
 .slider_comp {
 }
@@ -276,14 +301,6 @@ height: auto;
 
 
 }
-
-
-
-
-
-
-
-
 
 
 </style>
