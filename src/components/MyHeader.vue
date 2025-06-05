@@ -148,4 +148,44 @@ z-index:2;
   width: 100%;
   height: 100%;
 }
+
+
+
+
+
+
+@media (max-width: 450px) {
+.header {
+  height: 40px;
+}
+.header_logo {
+  font-size: 24px;
+}
+.search_input {
+}
+.header_cart_row {
+}
+.header_cart_button {
+}
+.cart_img {
+}
+.cart_text {
+}
+.cart_count {
+}
+.cart_modal {
+}
+.modal_overlay {
+}
+
+
+
+
+  .cart_text ,
+.cart_count {
+  display: none;
+}
+}
+
+
 </style>

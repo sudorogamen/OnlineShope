@@ -123,6 +123,9 @@ export default {
   }
 }
 
+@media (max-width: 899px) {
+     .js-products-list{gap: 5px;}
+}
 @media (min-width: 600px) and (max-width: 899px) {
   .js-products-list {
     grid-template-columns: repeat(3, 1fr);

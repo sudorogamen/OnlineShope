@@ -342,6 +342,7 @@ function getRandomInt(min, max) {
 for (let index = 0; index < MyLlist.length; index++) {
   MyLlist[index].price = arr[getRandomInt(0, arr.length - 1)];
   MyLlist[index].id = index;
+  MyLlist[index].desc = "Some kind of product description in a few lines for more detailed information";
 }
 
 export default MyLlist;
