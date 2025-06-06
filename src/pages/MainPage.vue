@@ -37,7 +37,7 @@ searchProducts(n){
   }else{
     this.products = [];
     MyList.forEach(el => {
-      if ( el.name.replace(/\s/g, "").toUpperCase().trim() == this.searchValue.replace(/\s/g, "").toUpperCase().trim()) {
+      if ( el.name.replace(/\s/g, "").toUpperCase().trim().includes(this.searchValue.replace(/\s/g, "").toUpperCase().trim())) {
       this.products.push({...el});
      console.log(el)
     }
