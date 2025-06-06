@@ -16,6 +16,7 @@ export default {
   data() {
     return {
        products: [],
+       searchProducts:false
      
      };
   },
@@ -26,26 +27,30 @@ type:String
   },
   watch:{
 searchValue(n){
+  this.searchProducts=true
+},
+searchProducts(n){
 
-  if (n == '') {
+  if (this.searchValue == '') {
     
     this.products = MyList;
   }else{
     this.products = [];
     MyList.forEach(el => {
-      if ( el.name.replace(/\s/g, "").toUpperCase().trim() == n.replace(/\s/g, "").toUpperCase().trim()) {
+      if ( el.name.replace(/\s/g, "").toUpperCase().trim() == this.searchValue.replace(/\s/g, "").toUpperCase().trim()) {
       this.products.push({...el});
      console.log(el)
     }
   });
   }
+    this.searchProducts=false
 }
   },
   methods: {},
   beforeMount() {
     if (this.searchValue != '') {
       
-      this.products =[ MyList[2],MyList[2],MyList[2]];
+        this.searchProducts=true
     }else{
 
       this.products = MyList;
