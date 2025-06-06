@@ -13,8 +13,8 @@ const routes = [
     name: "ProductPage",
     component: ProductPage,
     props: (route) => ({
-      product: JSON.parse(sessionStorage.getItem("products")),
-      // prod: route.query
+      product:  JSON.parse(sessionStorage.getItem("products")),
+      // product: JSON.parse(route.query.product)
     }),
   },
 ];

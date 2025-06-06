@@ -1,7 +1,7 @@
 const MyLlist = [
   {
     id: 1,
-    name: "Product Name",
+    name: "head",
     src: [
       "https://i.postimg.cc/13CTy0Q5/1.webp",
       "https://i.postimg.cc/R0WYh3S1/2.webp",

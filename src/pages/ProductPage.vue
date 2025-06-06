@@ -22,7 +22,7 @@
          <button class="couny_plus_btn" @click="this.productCount++">+</button>
        </div>
      </div>
-     <button @click="" class="buy-button">Add to cart</button>
+     <button @click="$emit('addBuyProduct',this.product,this.productCount )" class="buy-button">Add to cart</button>
     </div>
   </div>
 </template>
