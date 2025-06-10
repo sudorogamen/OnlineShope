@@ -63,7 +63,7 @@ left: 0;
 .filters_row.open .filters_slideBar {
   opacity: 1;
   z-index: 2;
-  width: 400px;
+  width: 35%;
   
 }
 

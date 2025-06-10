@@ -61,9 +61,9 @@
               <h3 class="product-title">{{ product.name }}</h3>
             </div>
             <div class="product-price">
-              <span class="price">{{ product.price }}</span
-              ><span> ₽</span>
+              <span class="price">{{ product.price }}₽</span><span> x {{ product.count }}</span><span> = {{ product.price * product.count}}₽</span>
             </div>
+
          
         </div>
       </div>
@@ -324,22 +324,36 @@ input:focus[type="search"] {
 }
 .price {
 }
-@media (max-width: 450px) {
+@media (max-width: 500px) {
+  form input:focus + button,
+form input:focus ~ button {
+  width: 35px;
+  opacity: 1;
+}
   .header {
-    height: 40px;
+    height: 30px;
+    gap: 5px;
   }
+  .cart_img {
+  width: 20px;
+  height: 20px;
+}
   .header_logo {
-    font-size: 24px;
+    font-size: 20px;
   }
+  input[type="search"] {padding: 5px;}
   input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
+    /* -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    display: none;
+    display: none; */
+    width: 10px;
+    height: 10px;
+   
   }
 
   .search_input {
-    font-size: 14px;
+    font-size: 12px;
   }
   .cart_text,
   .cart_count {
