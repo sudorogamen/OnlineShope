@@ -1,7 +1,6 @@
 <template>
   <div class="header">
     <div @click="home($event)" class="header_logo">
-  
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -33,7 +32,7 @@
           </g>
         </g>
       </svg>
-          <button>LOGO</button>
+      <button>LOGO</button>
     </div>
     <form @submit.prevent="search($event)">
       <input
@@ -55,8 +54,17 @@
         <span class="cart_count">{{ this.buyItemsCount }}</span>
       </button>
       <div class="cart_modal">
-        <div v-for="product in buyList">
-          <div>{{ product.id }}: {{ product.count }}</div>
+        <button class="close_btn" @click="close_modal($event)"></button>
+        <div class="cart_item_row" v-for="product in buyList">
+            <img :src="product.src[0]" class="image-card" />
+            <div class="product-description">
+              <h3 class="product-title">{{ product.name }}</h3>
+            </div>
+            <div class="product-price">
+              <span class="price">{{ product.price }}</span
+              ><span> ₽</span>
+            </div>
+         
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>
@@ -98,8 +106,8 @@ export default {
         .closest(".header_cart_row")
         .querySelector(".cart_modal")
         .classList.add("open");
-      e.target
-        .closest("body")
+       e.target
+        .closest(".header_cart_row")
         .querySelector(".modal_overlay")
         .classList.add("open");
     },
@@ -108,7 +116,9 @@ export default {
         .closest("body")
         .querySelector(".cart_modal")
         .classList.remove("open");
-      e.target.classList.remove("open");
+       e.target
+        .closest(".header_cart_row")
+        .querySelector(".modal_overlay").classList.remove("open");
     },
   },
 };
@@ -195,8 +205,6 @@ input:focus[type="search"] {
 .header_cart_row {
   position: relative;
   height: 100%;
-
-
 }
 .header_cart_button {
   height: 100%;
@@ -242,7 +250,7 @@ input:focus[type="search"] {
   position: absolute;
   top: 70px;
   right: -1px;
-  width: 400px;
+  width: 700px;
   height: 0px;
   background: #000;
   opacity: 0;
@@ -265,7 +273,57 @@ input:focus[type="search"] {
   width: 100%;
   height: 100%;
 }
+.cart_modal{
 
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+  flex-direction: column;
+  padding: 20px;
+}
+.cart_item_row{
+  display: flex;
+  height: 170px;
+  border-block: 1px solid rgba(141, 140, 139, 1);
+  padding-block: 10px;
+  align-items: center;
+  gap: 10px;
+}
+.close_btn{
+
+  
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  background-image: url(https://i.postimg.cc/xCGGykVz/cross-mark.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  
+
+}
+.cart_item_row img{
+  height: 100%;
+  width: auto;
+}
+.prodct_title {
+}
+.product_price {
+}
+.image-card {
+}
+.product-description {
+}
+.product-title {
+}
+.product-price {
+}
+.price {
+}
 @media (max-width: 450px) {
   .header {
     height: 40px;
