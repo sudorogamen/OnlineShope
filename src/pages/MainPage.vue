@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div class="fil">
-       Filters
-    </div>
+    <Filters></Filters>
     <ProductsRow :productsArray="products"></ProductsRow>
   </div>
 </template>
 <script>
 import ProductsRow from "@/components/ProductsRow.vue";
 import MyList from "@/My-list";
+import Filters from "@/components/Filters.vue";
 export default {
   components: {
-    ProductsRow,
+    ProductsRow,Filters
   },
   data() {
     return {

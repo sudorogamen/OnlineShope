@@ -164,4 +164,19 @@ legend {
 body {
   background: rgb(7, 10, 14);
 }
+
+*::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+border-inline: 1px solid rgb(114, 113, 112);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(255, 89, 0, 1);
+}
+
+
+
+
 </style>
