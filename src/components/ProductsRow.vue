@@ -49,6 +49,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .buy-button {
   color: white;
   background: rgba(255, 89, 0, 1);

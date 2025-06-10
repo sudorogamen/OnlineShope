@@ -164,7 +164,7 @@ legend {
 body {
   background: rgb(7, 10, 14);
 }
-
+@media (hover: hover) {
 *::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
@@ -176,7 +176,7 @@ body {
 
 }
 
-
+}
 
 
 </style>

@@ -5,59 +5,6 @@
         Filters
       </button>
       <div class="filters_slideBar">
-        
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
-        <div class="te">sdasdasdsdasdas</div>
       </div>
       <div class="filters_slideBar_overlay" @click="closeSlideBar($event)"></div>
     </div>
