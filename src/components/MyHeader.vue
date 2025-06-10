@@ -1,0 +1,296 @@
+<template>
+  <div class="header">
+    <div @click="home($event)" class="header_logo">
+      <button>LOGO</button>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="24"
+        height="24"
+        viewBox="0,0,256,256"
+      >
+        <g
+          fill="#ff5901"
+          fill-rule="nonzero"
+          stroke="none"
+          stroke-width="1"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray=""
+          stroke-dashoffset="0"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        >
+          <g transform="scale(10.66667,10.66667)">
+            <path
+              d="M12,2c-0.26712,0.00003 -0.52312,0.10694 -0.71094,0.29688l-10.08594,8.80078c-0.12774,0.09426 -0.20313,0.24359 -0.20312,0.40234c0,0.27614 0.22386,0.5 0.5,0.5h2.5v8c0,0.552 0.448,1 1,1h4c0.552,0 1,-0.448 1,-1v-6h4v6c0,0.552 0.448,1 1,1h4c0.552,0 1,-0.448 1,-1v-8h2.5c0.27614,0 0.5,-0.22386 0.5,-0.5c0.00001,-0.15876 -0.07538,-0.30808 -0.20312,-0.40234l-10.08008,-8.79492c-0.00194,-0.00196 -0.0039,-0.00391 -0.00586,-0.00586c-0.18782,-0.18994 -0.44382,-0.29684 -0.71094,-0.29687z"
+            ></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <form @submit.prevent="search($event)">
+      <input
+        type="search"
+        class="search_input"
+        placeholder="Search"
+        v-model="searchValue"
+      />
+      <button class="search_btn" type="submit" @focus="search($event)"></button>
+    </form>
+    <div class="header_cart_row">
+      <button @click="openModal($event)" class="header_cart_button">
+        <img
+          src="https://i.postimg.cc/tC7qW03X/17701365.png"
+          alt=""
+          class="cart_img"
+        />
+        <span class="cart_text">Cart</span>
+        <span class="cart_count">{{ this.buyItemsCount }}</span>
+      </button>
+      <div class="cart_modal">
+        <div v-for="product in buyList">
+          <div>{{ product.id }}: {{ product.count }}</div>
+        </div>
+      </div>
+      <div class="modal_overlay" @click="close_modal($event)"></div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      count: 0,
+      searchValue: "",
+    };
+  },
+  props: {
+    buyList: {
+      type: Array,
+    },
+    buyItemsCount: {},
+  },
+  methods: {
+    home(event) {
+      if (event.target === event.currentTarget) return;
+      this.searchValue = "";
+      this.$emit("searchProducts", this.searchValue);
+      this.$router.push("/");
+    },
+    blur(e) {
+      e.target.closest("form").querySelector("input").blur();
+    },
+    search(e) {
+      this.$emit("searchProducts", this.searchValue);
+      this.$router.push("/");
+      this.blur(e);
+    },
+    openModal(e) {
+      e.target
+        .closest(".header_cart_row")
+        .querySelector(".cart_modal")
+        .classList.add("open");
+      e.target
+        .closest("body")
+        .querySelector(".modal_overlay")
+        .classList.add("open");
+    },
+    close_modal(e) {
+      e.target
+        .closest("body")
+        .querySelector(".cart_modal")
+        .classList.remove("open");
+      e.target.classList.remove("open");
+    },
+  },
+};
+</script>
+<style scoped>
+.header {
+  user-select: none;
+  height: 50px;
+  margin-top: 30px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.header_logo {
+  flex: 1 0 auto;
+  font-size: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header_logo > * {
+  cursor: pointer;
+}
+
+form {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+form input:focus + button,
+form input:focus ~ button {
+  width: 55px;
+  opacity: 1;
+}
+.search_btn {
+  object-fit: cover;
+  background: url(https://i.postimg.cc/Zq1bz54b/search.png) center center;
+  background-position: center;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 0 5px 5px 0;
+  opacity: 0;
+  width: 5px;
+  height: 100%;
+  cursor: pointer;
+  border-left: 0;
+  border: 1px solid rgba(255, 89, 0, 1);
+}
+
+.search_input {
+  border: 1px solid rgba(141, 140, 139, 1);
+  height: 100%;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 20px;
+  padding: 15px;
+}
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
+  background-image: url(https://i.postimg.cc/xCGGykVz/cross-mark.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+input:focus[type="search"] {
+  border-radius: 5px 0 0 5px;
+  border-color: rgba(255, 89, 0, 1);
+}
+.header_cart_row {
+  position: relative;
+  height: 100%;
+
+
+}
+.header_cart_button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid rgba(141, 140, 139, 1);
+}
+.cart_img {
+  width: 30px;
+  height: 30px;
+}
+/* .header_cart_button::before {
+ content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  %3E%3Cpath fill='rgba(255, 89, 0, 1)' d='M12 2c-0.26712 0.00003-0.52312 0.10694-0.71094 0.29688l-10.08594 8.80078c-0.12774 0.09426-0.20313 0.24359-0.20312 0.40234 0 0.27614 0.22386 0.5 0.5 0.5h2.5v8c0 0.552 0.448 1 1 1h4c0.552 0 1-0.448 1-1v-6h4v6c0 0.552 0.448 1 1 1h4c0.552 0 1-0.448 1-1v-8h2.5c0.27614 0 0.5-0.22386 0.5-0.5 0.00001-0.15876-0.07538-0.30808-0.20312-0.40234l-10.08008-8.79492c-0.00194-0.00196-0.0039-0.00391-0.00586-0.00586-0.18782-0.18994-0.44382-0.29684-0.71094-0.29687z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+} */
+.cart_text {
+  font-size: 20px;
+}
+.cart_count {
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50%;
+  background: rgba(255, 89, 0, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.cart_modal {
+  z-index: -1;
+  position: absolute;
+  top: 70px;
+  right: -1px;
+  width: 400px;
+  height: 0px;
+  background: #000;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+}
+.cart_modal.open {
+  z-index: 4;
+  opacity: 1;
+  height: 400px;
+}
+.modal_overlay {
+  display: none;
+}
+.modal_overlay.open {
+  z-index: 2;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 450px) {
+  .header {
+    height: 40px;
+  }
+  .header_logo {
+    font-size: 24px;
+  }
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  /* form.focus .search_btn {
+    width: 40px;
+    border-left: 0;
+  }
+  form.focus .search_input {
+    border-right: 0;
+  } */
+  .search_input {
+    font-size: 14px;
+  }
+  .cart_text,
+  .cart_count {
+    display: none;
+  }
+}
+</style>
