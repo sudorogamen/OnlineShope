@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div @click="home($event)" class="header_logo">
-      <button>LOGO</button>
+  
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -33,6 +33,7 @@
           </g>
         </g>
       </svg>
+          <button>LOGO</button>
     </div>
     <form @submit.prevent="search($event)">
       <input
@@ -278,13 +279,7 @@ input:focus[type="search"] {
     appearance: none;
     display: none;
   }
-  /* form.focus .search_btn {
-    width: 40px;
-    border-left: 0;
-  }
-  form.focus .search_input {
-    border-right: 0;
-  } */
+
   .search_input {
     font-size: 14px;
   }
