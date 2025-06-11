@@ -56,15 +56,15 @@
       <div class="cart_modal">
         <button class="close_btn" @click="close_modal($event)"></button>
         <div class="cart_item_row" v-for="product in buyList">
-            <img :src="product.src[0]" class="image-card" />
-            <div class="product-description">
-              <h3 class="product-title">{{ product.name }}</h3>
-            </div>
-            <div class="product-price">
-              <span class="price">{{ product.price }}₽</span><span> x {{ product.count }}</span><span> = {{ product.price * product.count}}₽</span>
-            </div>
-
-         
+          <img :src="product.src[0]" class="image-card" />
+          <div class="product-description">
+            <h3 class="product-title">{{ product.name }}</h3>
+          </div>
+          <div class="product-price">
+            <span class="price">{{ product.price }}₽</span
+            ><span> x {{ product.count }}</span
+            ><span> = {{ product.price * product.count }}₽</span>
+          </div>
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>
@@ -106,7 +106,7 @@ export default {
         .closest(".header_cart_row")
         .querySelector(".cart_modal")
         .classList.add("open");
-       e.target
+      e.target
         .closest(".header_cart_row")
         .querySelector(".modal_overlay")
         .classList.add("open");
@@ -116,9 +116,10 @@ export default {
         .closest("body")
         .querySelector(".cart_modal")
         .classList.remove("open");
-       e.target
+      e.target
         .closest(".header_cart_row")
-        .querySelector(".modal_overlay").classList.remove("open");
+        .querySelector(".modal_overlay")
+        .classList.remove("open");
     },
   },
 };
@@ -273,15 +274,14 @@ input:focus[type="search"] {
   width: 100%;
   height: 100%;
 }
-.cart_modal{
-
+.cart_modal {
   display: flex;
   overflow: hidden;
   overflow-y: auto;
   flex-direction: column;
   padding: 20px;
 }
-.cart_item_row{
+.cart_item_row {
   display: flex;
   height: 170px;
   border-block: 1px solid rgba(141, 140, 139, 1);
@@ -289,9 +289,7 @@ input:focus[type="search"] {
   align-items: center;
   gap: 10px;
 }
-.close_btn{
-
-  
+.close_btn {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -303,10 +301,8 @@ input:focus[type="search"] {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   cursor: pointer;
-  
-
 }
-.cart_item_row img{
+.cart_item_row img {
   height: 100%;
   width: auto;
 }
@@ -326,30 +322,34 @@ input:focus[type="search"] {
 }
 @media (max-width: 500px) {
   form input:focus + button,
-form input:focus ~ button {
-  width: 35px;
-  opacity: 1;
-}
+  form input:focus ~ button {
+    width: 35px;
+    opacity: 1;
+  }
+  .search_btn {
+ 
+  }
   .header {
-    height: 30px;
-    gap: 5px;
+    height: 40px;
+    gap: 2px;
   }
   .cart_img {
-  width: 20px;
-  height: 20px;
-}
-  .header_logo {
-    font-size: 20px;
+    width: 20px;
+    height: 20px;
   }
-  input[type="search"] {padding: 5px;}
+  .header_logo {
+    font-size: 15px;
+  }
+  input[type="search"] {
+    padding: 5px;
+  }
   input[type="search"]::-webkit-search-cancel-button {
     /* -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     display: none; */
-    width: 10px;
-    height: 10px;
-   
+    width: 15px;
+    height: 15px;
   }
 
   .search_input {
