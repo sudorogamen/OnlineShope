@@ -52,7 +52,7 @@ export default {
 
 .buy-button {
   color: white;
-  background: rgba(255, 89, 0, 1);
+  background:var(--accent-color);
   width: 100%;
   border-radius: 5px;
   height: 30px;
@@ -64,7 +64,7 @@ export default {
 }
 
 .products-container {
-  background: rgb(7, 10, 14);
+  background: var(--main-bg-color);
   display: flex;
   justify-self: center;
   flex-direction: column;
@@ -80,7 +80,7 @@ export default {
 
 .js-product-item {
   color: rgba(205, 207, 208, 1);
-  background: rgb(14, 17, 20);
+  background: var(--main-bg-color);
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(141, 140, 139, 1);

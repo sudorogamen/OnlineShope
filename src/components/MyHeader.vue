@@ -10,7 +10,7 @@
         viewBox="0,0,256,256"
       >
         <g
-          fill="#ff5901"
+          fill="var(--accent-color)"
           fill-rule="nonzero"
           stroke="none"
           stroke-width="1"
@@ -175,7 +175,7 @@ form input:focus ~ button {
   height: 100%;
   cursor: pointer;
   border-left: 0;
-  border: 1px solid rgba(255, 89, 0, 1);
+  border: 1px solid var(--accent-color);
 }
 
 .search_input {
@@ -201,7 +201,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 input:focus[type="search"] {
   border-radius: 5px 0 0 5px;
-  border-color: rgba(255, 89, 0, 1);
+  border-color:var(--accent-color);
 }
 .header_cart_row {
   position: relative;
@@ -238,7 +238,7 @@ input:focus[type="search"] {
   font-size: 18px;
   font-weight: 600;
   border-radius: 50%;
-  background: rgba(255, 89, 0, 1);
+  background:var(--accent-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -253,14 +253,15 @@ input:focus[type="search"] {
   right: -1px;
   width: 700px;
   height: 0px;
-  background: #000;
+  background:  var(--main-bg-color);
   opacity: 0;
   transition: ease-in-out 0.3s;
 }
 .cart_modal.open {
   z-index: 4;
   opacity: 1;
-  height: 400px;
+  height: auto;
+  max-height: 400px;
 }
 .modal_overlay {
   display: none;
@@ -320,6 +321,47 @@ input:focus[type="search"] {
 }
 .price {
 }
+
+
+
+
+@media (max-width: 950px) {
+  
+  .cart_modal{
+    width: 500px;
+  }
+  
+  
+  
+  
+}
+
+@media (max-width: 700px) {
+  .cart_modal{
+    width: 400px;
+  }
+  
+}
+
+@media (max-width: 550px) {
+  .cart_modal{
+ width: 300px;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 500px) {
   form input:focus + button,
   form input:focus ~ button {

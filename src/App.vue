@@ -49,6 +49,40 @@ this.buyList.forEach((element) => {
   padding: 0 5px;
 }
 
+
+
+
+:root {
+  --main-bg-color: rgb(10, 14, 19);
+  --accent-color:rgba(255, 89, 0, 1);
+}
+
+
+body {
+  background:var(--main-bg-color);
+}
+@media (hover: hover) {
+*::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color:var(--accent-color);
+
+}
+
+}
+
+
+
+
+
+
+
+
+
 /* none style */
 * {
   padding: 0;
@@ -160,22 +194,6 @@ label {
 
 legend {
   display: block;
-}
-body {
-  background: rgb(7, 10, 14);
-}
-@media (hover: hover) {
-*::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(255, 89, 0, 1);
-
-}
-
 }
 
 

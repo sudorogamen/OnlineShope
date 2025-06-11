@@ -74,7 +74,7 @@ close(e){
 
 
 .product_overlay.open {
-    background: #000;
+    background:var(--main-bg-color);
   position: fixed;
   top: 0;
   left: 0;
@@ -208,7 +208,7 @@ height: auto;
 .buy-button {
   width: 100%;
   color: white;
-  background: rgba(255, 89, 0, 1);
+  background:var(--accent-color);
   height: 40px;
   border-radius: 10px;
   font-weight: 900;

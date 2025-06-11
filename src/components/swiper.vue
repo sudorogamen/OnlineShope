@@ -73,7 +73,7 @@ img {
   opacity: 1;
 }
 .swiper-pagination-bullet-active {
-  background: rgba(255, 89, 0, 1);
+  background:var(--accent-color);
 }
 .wripper {
   overflow: hidden;
@@ -108,6 +108,7 @@ img {
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: rgba(255, 89, 0, 1);
+  color:var(--accent-color);
 }
 </style>
+

@@ -51,7 +51,7 @@ methods: {
 .filters_slideBar {
   overflow-y: auto;
   height: 100%;
-  background: #000;
+  background: var(--main-bg-color);
 width: 0;
 opacity: 0;
 z-index: -2;
