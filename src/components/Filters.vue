@@ -1,9 +1,17 @@
 <template>
 <div>
      <div class="filters_row">
-      <button @click="openSlideBar($event)" class="Filters_button">
-        Filters
+      <button @click="openSlideBar($event)" class="filters_button">
+        Filters <div class="filters_icon"><span></span><span></span><span></span></div>
       </button>
+      <div class="sort_row">
+        Sort by:
+        <select @change="sortProduct($event)" class="sort_button">
+          <option value="def">Default</option>
+          <option value="up">Ascending</option>
+          <option value="down">Descending</option>
+        </select>
+      </div>
       <div class="filters_slideBar">
       </div>
       <div class="filters_slideBar_overlay" @click="closeSlideBar($event)"></div>
@@ -15,10 +23,17 @@ export default {
 components: {
  },
 data() {
- return {};
+ return {
+  sortValue:'',
+  filterValues:[]
+ };
  },
  props: {},
 methods: {
+  sortProduct(e){
+    this.sortValue = e.target.value
+    this.$emit('sortProduct', this.sortValue)
+  },
   openSlideBar(e) {
     document.querySelector('body').style.overflow = 'hidden'
     e.target
@@ -45,8 +60,28 @@ methods: {
 </script>
 <style scoped>
 .filters_row {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  
 }
-.Filters_button {
+.filters_button {
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.filters_icon{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.filters_icon span{
+  width: 20px;
+  height: 4px;
+  background: white;
+  border-radius: 10px;
 }
 .filters_slideBar {
   overflow-y: auto;
@@ -81,5 +116,9 @@ left: 0;
       opacity: 1;
 }
 
+
+select{
+background: var(--main-bg-color);
+}
 
 </style>

@@ -54,7 +54,7 @@
         <span class="cart_count">{{ this.buyItemsCount }}</span>
       </button>
       <div class="cart_modal">
-        <div v-show="buyList.length < 1" class="none_items">Cart is empty</div>
+        <div v-show="buyList.length < 1" class="empty_cart">Cart is empty</div>
         <button class="close_btn" @click="close_modal($event)"></button>
         <div class="cart_item_row" v-for="product in buyList">
           <img :src="product.src[0]" class="image-card" />
@@ -216,6 +216,9 @@ input:focus[type="search"] {
   border-radius: 5px;
   padding: 10px;
   border: 1px solid rgba(141, 140, 139, 1);
+}
+.empty_cart{
+font-size: 20px;
 }
 .cart_img {
   width: 30px;

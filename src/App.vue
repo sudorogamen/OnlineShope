@@ -59,6 +59,7 @@ this.buyList.forEach((element) => {
 
 
 body {
+    color: rgb(255, 255, 255); 
   background:var(--main-bg-color);
 }
 @media (hover: hover) {
@@ -69,7 +70,7 @@ body {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color:var(--accent-color);
+  background-color: var(--accent-color);
 
 }
 
