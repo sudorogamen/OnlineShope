@@ -116,7 +116,10 @@ left: 0;
       opacity: 1;
 }
 
-
+.sort_row{
+  align-self: flex-end;
+font-size: 14px;
+}
 select{
 background: var(--main-bg-color);
 }
