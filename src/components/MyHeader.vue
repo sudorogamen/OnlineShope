@@ -54,6 +54,7 @@
         <span class="cart_count">{{ this.buyItemsCount }}</span>
       </button>
       <div class="cart_modal">
+        <div v-show="buyList.length < 1" class="none_items">Cart is empty</div>
         <button class="close_btn" @click="close_modal($event)"></button>
         <div class="cart_item_row" v-for="product in buyList">
           <img :src="product.src[0]" class="image-card" />
@@ -201,7 +202,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 input:focus[type="search"] {
   border-radius: 5px 0 0 5px;
-  border-color:var(--accent-color);
+  border-color: var(--accent-color);
 }
 .header_cart_row {
   position: relative;
@@ -238,7 +239,7 @@ input:focus[type="search"] {
   font-size: 18px;
   font-weight: 600;
   border-radius: 50%;
-  background:var(--accent-color);
+  background: var(--accent-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -253,7 +254,7 @@ input:focus[type="search"] {
   right: -1px;
   width: 700px;
   height: 0px;
-  background:  var(--main-bg-color);
+  background: var(--main-bg-color);
   opacity: 0;
   transition: ease-in-out 0.3s;
 }
@@ -322,45 +323,23 @@ input:focus[type="search"] {
 .price {
 }
 
-
-
-
 @media (max-width: 950px) {
-  
-  .cart_modal{
+  .cart_modal {
     width: 500px;
   }
-  
-  
-  
-  
 }
 
 @media (max-width: 700px) {
-  .cart_modal{
+  .cart_modal {
     width: 400px;
   }
-  
 }
 
 @media (max-width: 550px) {
-  .cart_modal{
- width: 300px;
+  .cart_modal {
+    width: 300px;
+  }
 }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 500px) {
   form input:focus + button,
@@ -369,7 +348,6 @@ input:focus[type="search"] {
     opacity: 1;
   }
   .search_btn {
- 
   }
   .header {
     height: 40px;
