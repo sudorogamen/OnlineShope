@@ -5,7 +5,7 @@
         @click="saveToStorage(product)"
         class="js-product-item"
         :id="product.id"
-        v-for="product in productsArray"
+        v-for="product in   this.$store.state.productsList"
       >
         <img :src="product.src[0]" class="image-card" />
         <div class="product-description">
@@ -29,10 +29,6 @@ export default {
     return {};
   },
   props: {
-    productsArray: {
-      type: Array,
-      requared: true,
-    },
   },
   methods: {
     saveToStorage(product) {

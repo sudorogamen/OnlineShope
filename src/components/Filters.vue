@@ -32,7 +32,8 @@ data() {
 methods: {
   sortProduct(e){
     this.sortValue = e.target.value
-    this.$emit('sortProduct', this.sortValue)
+          this.$store.commit('setSortValue', this.sortValue)
+          this.$store.getters.updateProducts
   },
   openSlideBar(e) {
     document.querySelector('body').style.overflow = 'hidden'

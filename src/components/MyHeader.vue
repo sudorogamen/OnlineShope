@@ -32,7 +32,7 @@
           </g>
         </g>
       </svg>
-      <button>LOGO</button>
+      <button>LOGO </button>
     </div>
     <form @submit.prevent="search($event)">
       <input
@@ -91,14 +91,16 @@ export default {
     home(event) {
       if (event.target === event.currentTarget) return;
       this.searchValue = "";
-      this.$emit("searchProducts", this.searchValue);
+      this.$store.commit('setSearchValue',this.searchValue )
+      this.$store.getters.updateProducts
       this.$router.push("/");
     },
     blur(e) {
       e.target.closest("form").querySelector("input").blur();
     },
     search(e) {
-      this.$emit("searchProducts", this.searchValue);
+      this.$store.commit('setSearchValue',this.searchValue )
+      this.$store.getters.updateProducts
       this.$router.push("/");
       this.blur(e);
     },

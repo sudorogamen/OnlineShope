@@ -1,7 +1,7 @@
 <template>
-  <div class="app_container">
-    <MyHeader :buyList="buyList" @searchProducts="searchProducts" :buyItemsCount="buyItemsCount"/>
-    <RouterView @addBuyProduct="addBuyProduct" :searchValue="searchValue" ></RouterView>
+  <div class="App">
+    <MyHeader :buyList="buyList"  :buyItemsCount="buyItemsCount"/>
+    <RouterView @addBuyProduct="addBuyProduct"  ></RouterView>
   </div>
 </template>
 <script>
@@ -15,14 +15,12 @@ export default {
     return {
       buyList:[],
       buyItemsCount:0,
-        searchValue:''
+    
     };
   },
   props: {},
   methods: {
-    searchProducts(products){
-      this.searchValue = products
-    },
+    
 addBuyProduct(product, count){
 let newItem = true
 this.buyList.forEach((element) => {
@@ -39,10 +37,13 @@ this.buyList.forEach((element) => {
 }
 
   },
+   beforeMount() {
+      this.$store.getters.updateProducts
+  },
 };
 </script>
 <style>
-.app_container {
+.App {
   user-select: none;
   max-width: 1440px;
   margin: 0 auto;
