@@ -12,10 +12,6 @@ const routes = [
     path: "/prod/:id",
     name: "ProductPage",
     component: ProductPage,
-    props: (route) => ({
-      product:  JSON.parse(sessionStorage.getItem("products")),
-      // product: JSON.parse(route.query.product)
-    }),
   },
 ];
 

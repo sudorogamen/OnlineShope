@@ -65,7 +65,7 @@ body {
 }
 @media (hover: hover) {
 *::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
   border-radius: 10px;
 }
 

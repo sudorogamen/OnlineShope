@@ -22,7 +22,7 @@
          <button class="couny_plus_btn" @click="this.productCount++">+</button>
        </div>
      </div>
-     <button @click="$emit('addBuyProduct',this.product,this.productCount )" class="buy-button">Add to cart</button>
+     <button @click="addBuyProduct" class="buy-button">Add to cart</button>
     </div>
   </div>
 </template>
@@ -33,20 +33,21 @@ export default {
   components: { swiper },
   data() {
     return {
-      productCount:1
-
+      productCount:1,
+      product:{}
 
     };
   },
   props: {
-    product: {
-      type: Object,
-    },
+   
   },
   mounted() {
     // Доступно как props
   },
   methods: {
+    addBuyProduct(){  
+      this.$store.commit('addBuyProduct', {...this.product, count:this.productCount})
+    },
 open(){
   document.querySelector('.slider_container').classList.add('open')
   document.querySelector('.product_overlay').classList.add('open')
@@ -61,6 +62,10 @@ close(e){
 
     
   },
+  mounted(){
+    this.product = this.$store.state.productsList.find(item => item.id == this.$route.params.id)
+    
+  }
 };
 </script>
 <style scoped>

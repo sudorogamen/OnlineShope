@@ -37,9 +37,7 @@ export default {
         params: {
           id: product.id,
         },
-      //  query: {product: JSON.stringify(product)}
       });
-      sessionStorage.setItem("products", JSON.stringify(product));
     },
   },
 };

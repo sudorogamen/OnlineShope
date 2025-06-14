@@ -32,7 +32,7 @@
           </g>
         </g>
       </svg>
-      <button>LOGO </button>
+      <button>LOGO</button>
     </div>
     <form @submit.prevent="search($event)">
       <input
@@ -51,21 +51,35 @@
           class="cart_img"
         />
         <span class="cart_text">Cart</span>
-        <span class="cart_count">{{ this.buyItemsCount }}</span>
+        <span class="cart_count">{{ this.$store.state.buyItemsCount }}</span>
       </button>
       <div class="cart_modal">
-        <div v-show="buyList.length < 1" class="empty_cart">Cart is empty</div>
+        <div class="cart_modal_title">Shopping Cart</div>
+        <div v-show="this.$store.state.buyList.length < 1" class="empty_cart">
+          Cart is empty
+        </div>
         <button class="close_btn" @click="close_modal($event)"></button>
-        <div class="cart_item_row" v-for="product in buyList">
-          <img :src="product.src[0]" class="image-card" />
-          <div class="product-description">
-            <h3 class="product-title">{{ product.name }}</h3>
+        <div class="cart_item_row" v-for="product in this.$store.state.buyList">
+          <img :src="product.src[0]" class="image_card" />
+          <div class="product_description">
+            <h3 class="product_title">{{ product.name }}</h3>
+            <span class="price">{{ product.price }}₽</span>
           </div>
-          <div class="product-price">
-            <span class="price">{{ product.price }}₽</span
-            ><span> x {{ product.count }}</span
-            ><span> = {{ product.price * product.count }}₽</span>
+          <div class="product_total_price">
+            <div>{{ product.price * product.count }}₽</div>
+            <div class="prodct_count_box">
+              <button
+                class="couny_minus_btn"
+                @click="this.$store.commit('setBuyItemsCount', {id:product.id, value:'minus'})">
+                -
+              </button>
+              <div class="prodct_count">{{ product.count }}</div>
+              <button class="couny_plus_btn" @click="this.$store.commit('setBuyItemsCount', {id:product.id, value:'plus'})">
+                +
+              </button>
+            </div>
           </div>
+          <button @click="delite(product)" class="delite_btn"></button>
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>
@@ -81,26 +95,24 @@ export default {
       searchValue: "",
     };
   },
-  props: {
-    buyList: {
-      type: Array,
-    },
-    buyItemsCount: {},
-  },
+  props: {},
   methods: {
+    delite(product) {
+      this.$store.commit("deliteBuyProduct", product);
+    },
     home(event) {
       if (event.target === event.currentTarget) return;
       this.searchValue = "";
-      this.$store.commit('setSearchValue',this.searchValue )
-      this.$store.getters.updateProducts
+      this.$store.commit("setSearchValue", this.searchValue);
+      this.$store.getters.updateProducts;
       this.$router.push("/");
     },
     blur(e) {
       e.target.closest("form").querySelector("input").blur();
     },
     search(e) {
-      this.$store.commit('setSearchValue',this.searchValue )
-      this.$store.getters.updateProducts
+      this.$store.commit("setSearchValue", this.searchValue);
+      this.$store.getters.updateProducts;
       this.$router.push("/");
       this.blur(e);
     },
@@ -219,8 +231,8 @@ input:focus[type="search"] {
   padding: 10px;
   border: 1px solid rgba(141, 140, 139, 1);
 }
-.empty_cart{
-font-size: 20px;
+.empty_cart {
+  font-size: 20px;
 }
 .cart_img {
   width: 30px;
@@ -253,12 +265,15 @@ font-size: 20px;
 }
 
 .cart_modal {
+  border: 1px solid var(--accent-color);
   z-index: -1;
   position: absolute;
   top: 70px;
   right: -1px;
   width: 700px;
-  height: 0px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--accent-color);
+  max-height: 0px;
   background: var(--main-bg-color);
   opacity: 0;
   transition: ease-in-out 0.3s;
@@ -268,6 +283,12 @@ font-size: 20px;
   opacity: 1;
   height: auto;
   max-height: 400px;
+}
+.cart_modal_title {
+  border-bottom: 1px solid rgba(141, 140, 139, 1);
+  padding-bottom: 5px;
+  font-size: 26px;
+  margin-bottom: 5px;
 }
 .modal_overlay {
   display: none;
@@ -289,14 +310,16 @@ font-size: 20px;
   padding: 20px;
 }
 .cart_item_row {
+  position: relative;
   display: flex;
   height: 170px;
-  border-block: 1px solid rgba(141, 140, 139, 1);
+  border-bottom: 1px solid rgba(141, 140, 139, 1);
   padding-block: 10px;
   align-items: center;
   gap: 10px;
 }
-.close_btn {
+.close_btn,
+.delite_btn {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -313,19 +336,32 @@ font-size: 20px;
   height: 100%;
   width: auto;
 }
-.prodct_title {
+
+.image_card {
 }
-.product_price {
+.product_description {
+   flex: 1 1 100%;
 }
-.image-card {
-}
-.product-description {
-}
-.product-title {
-}
-.product-price {
+.product_title {
 }
 .price {
+}
+.product_total_price {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prodct_count_box{
+  display: flex;
+  align-items: center;
+
+}
+.couny_minus_btn {
+}
+.prodct_count {
+}
+.couny_plus_btn {
 }
 
 @media (max-width: 950px) {
@@ -340,7 +376,7 @@ font-size: 20px;
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 430px) {
   .cart_modal {
     width: 300px;
   }

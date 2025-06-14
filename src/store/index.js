@@ -9,8 +9,6 @@ export default createStore({
     buyItemsCount: 0,
   },
   getters: {
-
-
     //поиск товаров
     searchProduct(state) {
       state.productsList = [];
@@ -27,8 +25,7 @@ export default createStore({
       });
     },
 
-
- //сортировка товаров
+    //сортировка товаров
     sortProduct(state) {
       if (state.sortValue == "def") {
         state.productsList = state.productsList.toSorted((a, b) => {
@@ -47,24 +44,19 @@ export default createStore({
       }
     },
 
-
-
-
     //обновление списка товааров
     updateProducts(state, getters) {
-      //проверка поиска 
+      //проверка поиска
       if (state.searchValue == "") {
         state.productsList = MyLlist;
       } else {
         getters.searchProduct;
       }
 
-      //проверка сортировки 
+      //проверка сортировки
       if (state.sortValue) {
         getters.sortProduct;
       }
-
-
 
       return state.productsList;
     },
@@ -82,11 +74,39 @@ export default createStore({
     setFilterValue(state, value) {
       state.sortValue = value;
     },
-    setBuyList(state, value) {
-      state.buyList = value;
+    addBuyProduct(state, product) {
+      let newItem = true;
+      state.buyList.forEach((element) => {
+        if (element.id == product.id) {
+          element.count += product.count;
+          newItem = false;
+        }
+      });
+      if (newItem) {
+        state.buyList.push({ ...product, count: product.count });
+      }
+      state.buyItemsCount += product.count;
     },
-    setBuyItemsCount(state, value) {
-      state.buyItemsCount = value;
+    deliteBuyProduct(state, product) {
+      state.buyList = state.buyList.filter((element) => {
+        return element.id != product.id;
+      });
+      state.buyItemsCount -= product.count;
+    },
+    setBuyItemsCount(state, product) {
+      state.buyList.forEach((element) => {
+        if (element.id == product.id) {
+          if (product.value == "plus") {
+            element.count++;
+            state.buyItemsCount++;
+          } else {
+            if (element.count > 1) {
+              element.count--;
+              state.buyItemsCount--;
+            }
+          }
+        }
+      });
     },
   },
 });
