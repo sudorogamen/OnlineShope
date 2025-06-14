@@ -153,7 +153,7 @@ select {
 }
 @media (max-width: 500px) {
   .filters_row.open .filters_slideBar {
-    width: 100%;
+    width: 80%;
   }
 }
 </style>
