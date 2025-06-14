@@ -41,7 +41,7 @@ export default {
   mounted() {
     this.swiper = new Swiper(".swiper-container", {
       modules: [Navigation, Pagination],
-
+      direction: 'horizontal',
       loop: true,
       slidesPerView: 1,
       pagination: {
