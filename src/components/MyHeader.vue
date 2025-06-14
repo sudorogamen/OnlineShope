@@ -364,19 +364,24 @@ input:focus[type="search"] {
 .couny_plus_btn {
 }
 
-@media (max-width: 950px) {
+/* @media (max-width: 950px) {
   .cart_modal {
     width: 500px;
   }
+} */
+@media (max-width: 750px) {
+.cart_modal {
+    width: 500px;
+  }
 }
-
-@media (max-width: 700px) {
-  .cart_modal {
-    width: 400px;
+@media (max-width: 550px) {
+.cart_modal {
+    width: 350px;
   }
 }
 
-@media (max-width: 430px) {
+
+@media (max-width: 360px) {
   .cart_modal {
     width: 300px;
   }
