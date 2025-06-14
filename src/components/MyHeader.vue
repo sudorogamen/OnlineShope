@@ -364,11 +364,7 @@ input:focus[type="search"] {
 .couny_plus_btn {
 }
 
-/* @media (max-width: 950px) {
-  .cart_modal {
-    width: 500px;
-  }
-} */
+
 @media (max-width: 750px) {
 .cart_modal {
     width: 500px;
@@ -377,6 +373,9 @@ input:focus[type="search"] {
 @media (max-width: 550px) {
 .cart_modal {
     width: 350px;
+  }
+  .cart_item_row {
+    height: 100px;
   }
 }
 
