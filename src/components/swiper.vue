@@ -14,14 +14,13 @@
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
-      <div class="swiper-scrollbar"></div>
     </div>
   </div>
 </template>
 
 <script>
 import Swiper from "swiper";
-import { Navigation, Pagination, Scrollbar } from "swiper";
+import { Navigation, Pagination, } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -42,7 +41,8 @@ export default {
     this.swiper = new Swiper(".swiper-container", {
       modules: [Navigation, Pagination],
       direction: 'horizontal',
-      loop: true,
+   loop: true,
+    //speed: 200,
       slidesPerView: 1,
       pagination: {
         el: ".swiper-pagination",

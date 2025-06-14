@@ -63,10 +63,10 @@
           <img :src="product.src[0]" class="image_card" />
           <div class="product_description">
             <h3 class="product_title">{{ product.name }}</h3>
-            <span class="price">{{ product.price }}₽</span>
+            <span class="price">{{ product.price }} ₽</span>
           </div>
           <div class="product_total_price">
-            <div>{{ product.price * product.count }}₽</div>
+            <div>{{ product.price * product.count }} ₽</div>
             <div class="prodct_count_box">
               <button
                 class="couny_minus_btn"
@@ -347,7 +347,7 @@ input:focus[type="search"] {
 .price {
 }
 .product_total_price {
-
+gap: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -355,6 +355,11 @@ input:focus[type="search"] {
 .prodct_count_box{
   display: flex;
   align-items: center;
+  gap: 15px;
+  background: rgba(10, 15, 21, 1);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
 
 }
 .couny_minus_btn {
