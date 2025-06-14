@@ -377,6 +377,10 @@ input:focus[type="search"] {
   .cart_item_row {
     height: 100px;
   }
+  .delite_btn {
+    width: 15px;
+    height: 15px;
+  }
 }
 
 
