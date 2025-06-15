@@ -77,7 +77,7 @@ export default {
   background: var(--main-bg-color);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(141, 140, 139, 1);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 15px;
   align-items: center;

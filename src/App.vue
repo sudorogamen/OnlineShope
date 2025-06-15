@@ -56,6 +56,7 @@ this.buyList.forEach((element) => {
 :root {
   --main-bg-color: rgb(10, 14, 19);
   --accent-color:rgba(255, 89, 0, 1);
+  --border-color: rgba(141, 140, 139, 1);
 }
 
 

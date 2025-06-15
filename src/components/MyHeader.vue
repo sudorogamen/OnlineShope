@@ -59,7 +59,8 @@
           Cart is empty
         </div>
         <button class="close_btn" @click="close_modal($event)"></button>
-        <div class="cart_item_row" v-for="product in this.$store.state.buyList">
+        <ul class="cart_list">
+           <li class="cart_item_row" v-for="product in this.$store.state.buyList">
           <img :src="product.src[0]" class="image_card" />
           <div class="product_description">
             <h3 class="product_title">{{ product.name }}</h3>
@@ -70,16 +71,35 @@
             <div class="prodct_count_box">
               <button
                 class="couny_minus_btn"
-                @click="this.$store.commit('setBuyItemsCount', {id:product.id, value:'minus'})">
+                @click="
+                  this.$store.commit('setBuyItemsCount', {
+                    id: product.id,
+                    value: 'minus',
+                  })
+                "
+              >
                 -
               </button>
               <div class="prodct_count">{{ product.count }}</div>
-              <button class="couny_plus_btn" @click="this.$store.commit('setBuyItemsCount', {id:product.id, value:'plus'})">
+              <button
+                class="couny_plus_btn"
+                @click="
+                  this.$store.commit('setBuyItemsCount', {
+                    id: product.id,
+                    value: 'plus',
+                  })
+                "
+              >
                 +
               </button>
             </div>
           </div>
           <button @click="delite(product)" class="delite_btn"></button>
+        </li>
+        </ul>
+        <div class="total_sum" v-show="this.$store.state.buyList.length > 0">
+          <div>Total price: {{ this.$store.state.totalSum }}</div>
+          <button  class="buy_button">Go to pay</button>
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>
@@ -117,6 +137,7 @@ export default {
       this.blur(e);
     },
     openModal(e) {
+       document.querySelector("body").style.overflow = "hidden";
       e.target
         .closest(".header_cart_row")
         .querySelector(".cart_modal")
@@ -127,6 +148,7 @@ export default {
         .classList.add("open");
     },
     close_modal(e) {
+       document.querySelector("body").style.overflow = "visible";
       e.target
         .closest("body")
         .querySelector(".cart_modal")
@@ -194,7 +216,7 @@ form input:focus ~ button {
 }
 
 .search_input {
-  border: 1px solid rgba(141, 140, 139, 1);
+  border: 1px solid var(--border-color);
   height: 100%;
   border-radius: 5px;
   width: 100%;
@@ -229,7 +251,7 @@ input:focus[type="search"] {
   gap: 5px;
   border-radius: 5px;
   padding: 10px;
-  border: 1px solid rgba(141, 140, 139, 1);
+  border: 1px solid var(--border-color);
 }
 .empty_cart {
   font-size: 20px;
@@ -273,7 +295,7 @@ input:focus[type="search"] {
   width: 700px;
   border-radius: 10px;
   box-shadow: 0 0 10px var(--accent-color);
-  max-height: 0px;
+  height: 0px;
   background: var(--main-bg-color);
   opacity: 0;
   transition: ease-in-out 0.3s;
@@ -282,10 +304,15 @@ input:focus[type="search"] {
   z-index: 4;
   opacity: 1;
   height: auto;
+}
+.cart_list{
+  height: auto;
   max-height: 400px;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .cart_modal_title {
-  border-bottom: 1px solid rgba(141, 140, 139, 1);
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 5px;
   font-size: 26px;
   margin-bottom: 5px;
@@ -309,11 +336,30 @@ input:focus[type="search"] {
   flex-direction: column;
   padding: 20px;
 }
+.total_sum{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.buy_button{
+  align-self: flex-end;
+  width: 200px;
+  color: white;
+  background:var(--accent-color);
+  height: 30px;
+  border-radius: 6px;
+  font-weight: 900;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .cart_item_row {
   position: relative;
   display: flex;
   height: 170px;
-  border-bottom: 1px solid rgba(141, 140, 139, 1);
+  border-bottom: 1px solid var(--border-color);
   padding-block: 10px;
   align-items: center;
   gap: 10px;
@@ -340,27 +386,26 @@ input:focus[type="search"] {
 .image_card {
 }
 .product_description {
-   flex: 1 1 100%;
+  flex: 1 1 100%;
 }
 .product_title {
 }
 .price {
 }
 .product_total_price {
-gap: 5px;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.prodct_count_box{
+.prodct_count_box {
   display: flex;
   align-items: center;
   gap: 15px;
-  background: rgba(10, 15, 21, 1);
+  background: rgb(14, 20, 27);
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #000;
-
+  border: 1px solid var(--border-color);
 }
 .couny_minus_btn {
 }
@@ -369,25 +414,45 @@ gap: 5px;
 .couny_plus_btn {
 }
 
-
 @media (max-width: 750px) {
-.cart_modal {
+  .cart_modal {
     width: 500px;
+  }
+  .cart_modal_title {
+    font-size: 18px;
+  }
+  .empty_cart {
+    font-size: 16px;
   }
 }
 @media (max-width: 550px) {
-.cart_modal {
+  .total_sum{
+}
+.buy_button{
+
+  width: 120px;
+  color: white;
+  background:var(--accent-color);
+  height: 30px;
+  border-radius: 6px;
+  font-weight: 900;
+  font-size: 16px;
+  
+}
+  .cart_modal {
     width: 350px;
   }
   .cart_item_row {
+    padding-top: 15px;
     height: 100px;
   }
   .delite_btn {
+    top: 2px;
+    right: 2px;
     width: 15px;
     height: 15px;
   }
 }
-
 
 @media (max-width: 360px) {
   .cart_modal {
@@ -396,6 +461,9 @@ gap: 5px;
 }
 
 @media (max-width: 500px) {
+  .prodct_count_box {
+    font-size: 12px;
+  }
   form input:focus + button,
   form input:focus ~ button {
     width: 35px;

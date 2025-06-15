@@ -7,6 +7,7 @@ export default createStore({
     searchValue: "",
     buyList: [],
     buyItemsCount: 0,
+    totalSum: 0,
   },
   getters: {
     //поиск товаров
@@ -74,7 +75,7 @@ export default createStore({
     setFilterValue(state, value) {
       state.sortValue = value;
     },
-    addBuyProduct(state, product) {
+    addBuyProduct(state, product,) {
       let newItem = true;
       state.buyList.forEach((element) => {
         if (element.id == product.id) {
@@ -86,12 +87,14 @@ export default createStore({
         state.buyList.push({ ...product, count: product.count });
       }
       state.buyItemsCount += product.count;
+      this.commit('setTotalSum')
     },
-    deliteBuyProduct(state, product) {
+    deliteBuyProduct(state, product,) {
       state.buyList = state.buyList.filter((element) => {
         return element.id != product.id;
       });
       state.buyItemsCount -= product.count;
+      this.commit('setTotalSum')
     },
     setBuyItemsCount(state, product) {
       state.buyList.forEach((element) => {
@@ -99,14 +102,22 @@ export default createStore({
           if (product.value == "plus") {
             element.count++;
             state.buyItemsCount++;
+               this.commit('setTotalSum')
           } else {
             if (element.count > 1) {
               element.count--;
               state.buyItemsCount--;
+                 this.commit('setTotalSum')
             }
           }
         }
       });
+    },
+    setTotalSum(state){
+      state.totalSum = 0
+      state.buyList.forEach(el => {
+        state.totalSum += parseInt(el.price * el.count)
+      })
     },
   },
 });

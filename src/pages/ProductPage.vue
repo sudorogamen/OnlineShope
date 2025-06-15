@@ -22,7 +22,7 @@
          <button class="couny_plus_btn" @click="this.productCount++">+</button>
        </div>
      </div>
-     <button @click="addBuyProduct" class="buy-button">Add to cart</button>
+     <button @click="addBuyProduct" class="buy_button">Add to cart</button>
     </div>
   </div>
 </template>
@@ -145,8 +145,10 @@ close(e){
 height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+
 }
+ 
 .slider_container.open{
 
   position: fixed;
@@ -198,10 +200,10 @@ height: auto;
   display: flex;
   align-items: center;
   gap: 15px;
-  background: rgba(10, 15, 21, 1);
+  background: rgb(14, 20, 27);
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #000;
+  border: 1px solid  var(--border-color);
 }
 .couny_minus_btn,
 .couny_plus_btn {
@@ -210,7 +212,7 @@ height: auto;
 .prodct_count {
 }
 
-.buy-button {
+.buy_button {
   width: 100%;
   color: white;
   background:var(--accent-color);
@@ -221,6 +223,7 @@ height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 
@@ -285,6 +288,10 @@ height: auto;
  
 }
 }
+.prodct_text_content{
+  width: 450px;
+  align-self: center;
+}
 .prodct_container {
   gap: 10px;
   flex-direction: column;
@@ -293,6 +300,7 @@ height: auto;
 .slider_container {
   align-self: center;
   width: 450px;
+  height: auto;
 }
 }
 
@@ -302,11 +310,12 @@ height: auto;
 @media (max-width:440px) {
 
   .slider_container.open{
+    
   .slider_comp{
   position: relative;
  margin-inline: 10px;
    width: 100%;
-   height: auto;
+   height: 400px;
 }
 }
 
@@ -344,7 +353,7 @@ height: auto;
 }
 .couny_plus_btn {
 }
-.buy-button {
+.buy_button {
 }
 
 
