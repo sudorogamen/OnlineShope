@@ -3,6 +3,7 @@ import MyLlist from "@/My-list";
 export default createStore({
   state: {
     productsList: [],
+    savedPosition:{},
     sortValue: "",
     searchValue: "",
     buyList: [],

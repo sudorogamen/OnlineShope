@@ -7,6 +7,7 @@ const routes = [
     path: "/",
     name: "MainPage",
     component: MainPage,
+   
   },
   {
     path: "/prod/:id",
@@ -18,6 +19,7 @@ const routes = [
 const router = createRouter({
   routes,
   history: createWebHashHistory(),
+   
 });
 
 export default router;

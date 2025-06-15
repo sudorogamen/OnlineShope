@@ -1,7 +1,12 @@
 <template>
   <div class="App">
-    <MyHeader :buyList="buyList"  :buyItemsCount="buyItemsCount"/>
-    <RouterView @addBuyProduct="addBuyProduct"  ></RouterView>
+    <MyHeader :buyList="buyList" :buyItemsCount="buyItemsCount" />
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive" />
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive" />
+
+    <!-- <RouterView  ></RouterView> -->
   </div>
 </template>
 <script>
@@ -12,33 +17,12 @@ export default {
     MyHeader,
   },
   data() {
-    return {
-      buyList:[],
-      buyItemsCount:0,
-    
-    };
+    return {};
   },
   props: {},
-  methods: {
-    
-addBuyProduct(product, count){
-let newItem = true
-this.buyList.forEach((element) => {
-        if (element.id == product.id) {
-          element.count+= count;
-          newItem = false;
-        } 
-        
-         });
-        if (newItem) {
-       this.buyList.push({...product, count:count})
-      }
- this.buyItemsCount+=count
-}
-
-  },
-   beforeMount() {
-      this.$store.getters.updateProducts
+  methods: {},
+  beforeMount() {
+    this.$store.getters.updateProducts;
   },
 };
 </script>
@@ -50,41 +34,27 @@ this.buyList.forEach((element) => {
   padding: 0 5px;
 }
 
-
-
-
 :root {
   --main-bg-color: rgb(10, 14, 19);
-  --accent-color:rgba(255, 89, 0, 1);
+  --accent-color: rgba(255, 89, 0, 1);
   --border-color: rgba(141, 140, 139, 1);
 }
 
-
 body {
-    color: rgb(255, 255, 255); 
-  background:var(--main-bg-color);
+  color: rgb(255, 255, 255);
+  background: var(--main-bg-color);
 }
 @media (hover: hover) {
-*::-webkit-scrollbar {
-  width: 7px;
-  border-radius: 10px;
+  *::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--accent-color);
+  }
 }
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: var(--accent-color);
-
-}
-
-}
-
-
-
-
-
-
-
-
 
 /* none style */
 * {
@@ -198,6 +168,4 @@ label {
 legend {
   display: block;
 }
-
-
 </style>

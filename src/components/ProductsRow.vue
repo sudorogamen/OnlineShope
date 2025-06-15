@@ -2,7 +2,7 @@
   <div class="products-container">
     <ul class="js-products-list">
       <li
-        @click="saveToStorage(product)"
+        @click="saveToStorage(product, $event)"
         class="js-product-item"
         :id="product.id"
         v-for="product in   this.$store.state.productsList"
@@ -15,7 +15,7 @@
           <span class="price">{{ product.price }}</span
           ><span> ₽</span>
         </div>
-        <button @click="saveToStorage(product)" class="buy-button">
+        <button @click="saveToStorage(product,$event)" class="buy-button">
           Buy now
         </button>
       </li>
@@ -31,7 +31,10 @@ export default {
   props: {
   },
   methods: {
-    saveToStorage(product) {
+    saveToStorage(product, e) {
+      console.log(document.querySelector('body').getBoundingClientRect().y - 30);
+      
+      this.$store.state.savedPosition = { y:-(document.querySelector('body').getBoundingClientRect().y  - 30)}
       this.$router.push({
         name: "ProductPage",
         params: {

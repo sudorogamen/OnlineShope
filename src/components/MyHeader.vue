@@ -307,7 +307,7 @@ input:focus[type="search"] {
 }
 .cart_list{
   height: auto;
-  max-height: 400px;
+  max-height: 350px;
   overflow: hidden;
   overflow-y: auto;
 }
