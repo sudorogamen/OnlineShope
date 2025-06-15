@@ -22,10 +22,7 @@ export default {
   },mounted(){
     if (this.$store.state.savedPosition.y) {
         window.scrollTo({top: this.$store.state.savedPosition.y})
-    } else {
-   
-      
-    }
+    } 
   }
  
 };

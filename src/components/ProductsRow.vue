@@ -32,8 +32,6 @@ export default {
   },
   methods: {
     saveToStorage(product, e) {
-      console.log(document.querySelector('body').getBoundingClientRect().y - 30);
-      
       this.$store.state.savedPosition = { y:-(document.querySelector('body').getBoundingClientRect().y  - 30)}
       this.$router.push({
         name: "ProductPage",
