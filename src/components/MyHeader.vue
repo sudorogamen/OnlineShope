@@ -133,6 +133,7 @@ export default {
     search(e) {
       this.$store.commit("setSearchValue", this.searchValue);
       this.$store.getters.updateProducts;
+      this.$store.state.savedPosition = { y:0}
       this.$router.push("/");
       this.blur(e);
     },
