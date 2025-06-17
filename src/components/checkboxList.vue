@@ -50,7 +50,7 @@ export default {
     toggleSelect(e) {
       if (e.target.value == "all") {
         if (e.target.checked) {
-          this.newSelectedItems = [...this.checkboxList, 'all'];
+          this.newSelectedItems = [...this.checkboxList];
         } else {
           this.newSelectedItems = [];
         }
