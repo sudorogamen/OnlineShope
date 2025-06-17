@@ -1,7 +1,7 @@
 const MyLlist = [
   {
     id: 1,
-    name: "head",
+    name: "Product Name",
     src: [
       "https://i.postimg.cc/13CTy0Q5/1.webp",
       "https://i.postimg.cc/R0WYh3S1/2.webp",
@@ -332,7 +332,9 @@ const MyLlist = [
   },
 ];
   document.body.style.width = document.sc
-let arr = ["2999", "1560", "1999", "1299", "3500", "4290"];
+let priceArr = ["2999", "1560", "1999", "1299", "3500", "4290"];
+let categoryArr = ["Clothing", "Electronics"];
+let brandArr = ["apple", "sony",'samsung'];
 function getRandomInt(min, max) {
   min = Math.ceil(min); 
   max = Math.floor(max);
@@ -340,10 +342,12 @@ function getRandomInt(min, max) {
 }
 // document.querySelector('asd').classList.remove
 for (let index = 0; index < MyLlist.length; index++) {
-  MyLlist[index].price = arr[getRandomInt(0, arr.length - 1)];
+  MyLlist[index].price = priceArr[getRandomInt(0, priceArr.length - 1)];
   MyLlist[index].id = index;
-  MyLlist[index].name += (' ' + index)
+  MyLlist[index].name += (' ' + (index + 1))
   MyLlist[index].desc = "Some kind of product description in a some lines for more detailed information";
+  MyLlist[index].category = categoryArr[getRandomInt(0, categoryArr.length - 1)]; ;
+  MyLlist[index].brand = brandArr[getRandomInt(0, brandArr.length - 1)]; ;
 }
 
 export default MyLlist;

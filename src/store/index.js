@@ -3,14 +3,52 @@ import MyLlist from "@/My-list";
 export default createStore({
   state: {
     productsList: [],
-    savedPosition:{},
+    savedPosition: {},
     sortValue: "",
     searchValue: "",
     buyList: [],
     buyItemsCount: 0,
     totalSum: 0,
+    filters: {
+      category: [],
+      brands: [],
+      prices: {
+        min: 0,
+        max: 0,
+      },
+    },
+    activeFilters: {
+      category: [],
+      brands: [],
+      prices: {
+        min: 0,
+        max: 0,
+      },
+    },
   },
   getters: {
+    //создание фильтров
+    filtersCreate(state) {
+      let uniqueCategories = [...new Set(MyLlist.map((item) => item.category))];
+      let uniqueBrands = [...new Set(MyLlist.map((item) => item.brand))];
+      let prices = [...new Set(MyLlist.map((item) => item.price))];
+      state.filters.category = uniqueCategories;
+      state.filters.brands = uniqueBrands;
+      state.filters.prices.max = Math.max(...prices);
+      state.filters.prices.min = Math.min(...prices);
+      state.activeFilters = state.filters
+    },
+
+    filtersByCategory(state) {
+      state.productsList = state.productsList.filter((item) => 
+        state.activeFilters.category.includes(item.category)
+     );
+    },
+    filtersByBrand(state) {
+      state.productsList = state.productsList.filter((item) => 
+        state.activeFilters.brands.includes(item.brand)
+     );
+    },
     //поиск товаров
     searchProduct(state) {
       state.productsList = [];
@@ -26,6 +64,10 @@ export default createStore({
         }
       });
     },
+
+
+
+
 
     //сортировка товаров
     sortProduct(state) {
@@ -53,8 +95,14 @@ export default createStore({
         state.productsList = MyLlist;
       } else {
         getters.searchProduct;
+        state.activeFilters = state.filters
       }
-
+      if (state.activeFilters.category.length) {
+        getters.filtersByCategory
+      }
+      if (state.activeFilters.brands.length) {
+        getters.filtersByBrand
+      }
       //проверка сортировки
       if (state.sortValue) {
         getters.sortProduct;
@@ -76,7 +124,7 @@ export default createStore({
     setFilterValue(state, value) {
       state.sortValue = value;
     },
-    addBuyProduct(state, product,) {
+    addBuyProduct(state, product) {
       let newItem = true;
       state.buyList.forEach((element) => {
         if (element.id == product.id) {
@@ -88,14 +136,14 @@ export default createStore({
         state.buyList.push({ ...product, count: product.count });
       }
       state.buyItemsCount += product.count;
-      this.commit('setTotalSum')
+      this.commit("setTotalSum");
     },
-    deliteBuyProduct(state, product,) {
+    deliteBuyProduct(state, product) {
       state.buyList = state.buyList.filter((element) => {
         return element.id != product.id;
       });
       state.buyItemsCount -= product.count;
-      this.commit('setTotalSum')
+      this.commit("setTotalSum");
     },
     setBuyItemsCount(state, product) {
       state.buyList.forEach((element) => {
@@ -103,22 +151,22 @@ export default createStore({
           if (product.value == "plus") {
             element.count++;
             state.buyItemsCount++;
-               this.commit('setTotalSum')
+            this.commit("setTotalSum");
           } else {
             if (element.count > 1) {
               element.count--;
               state.buyItemsCount--;
-                 this.commit('setTotalSum')
+              this.commit("setTotalSum");
             }
           }
         }
       });
     },
-    setTotalSum(state){
-      state.totalSum = 0
-      state.buyList.forEach(el => {
-        state.totalSum += parseInt(el.price * el.count)
-      })
+    setTotalSum(state) {
+      state.totalSum = 0;
+      state.buyList.forEach((el) => {
+        state.totalSum += parseInt(el.price * el.count);
+      });
     },
   },
 });

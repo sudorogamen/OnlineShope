@@ -13,7 +13,10 @@
           <span class="price">{{ this.product.price }}</span
           ><span> ₽</span>
         </div>
-     <div class="prodct_desc">{{ this.product.desc }}</div>
+     <div class="prodct_desc">{{ this.product.desc }}
+        <div class="prodct_desc">{{ this.product.category }}</div>
+     <div class="prodct_desc">{{ this.product.brand }}</div>
+     </div>
      <div class="total_price">
       <p>Total price: {{ this.productCount *  this.product.price }}</p>
          <div class="prodct_count_box">
@@ -56,7 +59,6 @@ open(){
 },
 close(e){
     document.querySelector('.slider_container').classList.remove('open')
-
     e.target.closest(".product_overlay").classList.remove("open");
 }
 

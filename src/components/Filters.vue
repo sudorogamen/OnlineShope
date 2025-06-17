@@ -19,11 +19,33 @@
       </div>
       <div class="filters_slideBar">
         <button class="close_btn" @click="closeSlideBar($event)"></button>
+
+        <div class="filters_content">
+          <div class="filters_title">Filters</div>
+          
+          <div class="category_filters">
+            <ul class="category_filters_list">
+              <checkboxList
+                :checkboxList="this.$store.state.filters.category"
+                :selectedItems="this.$store.state.activeFilters.category"
+                @selectedItems="setActiveCategories"
+                ></checkboxList>
+              </ul>
+            </div>
+            <div class="brand_filters">
+            <ul class="brand_filters_list">
+              <checkboxList
+                :checkboxList="this.$store.state.filters.brands"
+              :selectedItems="this.$store.state.activeFilters.brands"
+                @selectedItems="setActiveBrands"
+              ></checkboxList>
+            </ul>
+          </div>
+        </div>
         <div class="filters_slideBar_buttons">
-          <button class="apply_btn">Apply</button
+          <button class="apply_btn" @click="addFilters($event)">Apply</button
           ><button class="reset_btn">Reset</button>
         </div>
-        
       </div>
       <div
         class="filters_slideBar_overlay"
@@ -33,16 +55,29 @@
   </div>
 </template>
 <script>
+import checkboxList from "./checkboxList.vue";
 export default {
-  components: {},
+  components: { checkboxList },
   data() {
     return {
-      sortValue: "def",
-      filterValues: [],
+      activeCategories:[...this.$store.state.activeFilters.category ],
+      activeBrands:[...this.$store.state.activeFilters.brands],
     };
   },
   props: {},
   methods: {
+     setActiveCategories(items){ 
+      this.activeCategories = items
+     },
+     setActiveBrands(items){ 
+      this.activeBrands = items
+     },
+     addFilters(e){
+      this.$store.state.activeFilters.category = this.activeCategories
+      this.$store.state.activeFilters.brands = this.activeBrands
+      this.$store.getters.updateProducts
+      this.closeSlideBar(e)
+     },
     sortProduct(e) {
       this.$store.commit("setSortValue", this.sortValue);
       this.$store.getters.sortProduct;
@@ -65,6 +100,8 @@ export default {
     },
   },
   mounted() {
+    this.$store.getters.filtersCreate;
+
     this.$store.state.sortValue
       ? (this.sortValue = this.$store.state.sortValue)
       : 0;
@@ -95,7 +132,7 @@ export default {
   border-radius: 10px;
 }
 .filters_slideBar {
-  overflow-y: auto;
+  max-height: 100%;
   height: 100%;
   background: var(--main-bg-color);
   width: 0;
@@ -105,15 +142,36 @@ export default {
   top: 0;
   left: 0;
   transition: ease-in-out 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 .filters_row.open .filters_slideBar {
   opacity: 1;
   z-index: 2;
   width: 35%;
 }
+
+.filters_content {
+  overflow-y: auto;
+  flex: 1 1 100%;
+}
+
+.filters_slideBar_buttons {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+.apply_btn {
+}
+.reset_btn {
+}
+
 .close_btn {
   position: absolute;
-  right: 5px;
+  right: 15px;
   top: 5px;
   width: 25px;
   height: 25px;

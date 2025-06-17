@@ -1,12 +1,8 @@
 <template>
   <div class="App">
-    <MyHeader :buyList="buyList" :buyItemsCount="buyItemsCount" />
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" />
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" />
-
-    <!-- <RouterView  ></RouterView> -->
+    <MyHeader  />
+    
+    <RouterView  ></RouterView>
   </div>
 </template>
 <script>
@@ -17,13 +13,21 @@ export default {
     MyHeader,
   },
   data() {
-    return {};
+    return {
+      categorie:[],
+    };
   },
   props: {},
   methods: {},
+
   beforeMount() {
-    this.$store.getters.updateProducts;
+    this.$store.getters.filtersCreate;
+    this.$store.getters.updateProducts;  
+
   },
+   mounted() {
+this.categorie = this.$store.state.filters.barnds
+   }
 };
 </script>
 <style>
