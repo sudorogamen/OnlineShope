@@ -23,6 +23,10 @@ export default {
     if (this.$store.state.savedPosition.y) {
         window.scrollTo({top: this.$store.state.savedPosition.y})
     } 
+
+
+    this.$store.getters.filtersCreate;
+   
   }
  
 };

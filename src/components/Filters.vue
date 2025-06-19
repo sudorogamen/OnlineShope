@@ -22,28 +22,28 @@
 
         <div class="filters_content">
           <div class="filters_title">Filters</div>
-          
+
           <div class="category_filters">
             <ul class="category_filters_list">
               <checkboxList
                 :checkboxList="this.$store.state.filters.category"
                 :selectedItems="this.$store.state.activeFilters.category"
                 @selectedItems="setActiveCategories"
-                ></checkboxList>
-              </ul>
-            </div>
-            <div class="brand_filters">
+              ></checkboxList>
+            </ul>
+          </div>
+          <div class="brand_filters">
             <ul class="brand_filters_list">
               <checkboxList
                 :checkboxList="this.$store.state.filters.brands"
-              :selectedItems="this.$store.state.activeFilters.brands"
+                :selectedItems="this.$store.state.activeFilters.brands"
                 @selectedItems="setActiveBrands"
               ></checkboxList>
             </ul>
           </div>
         </div>
         <div class="filters_slideBar_buttons">
-          <button class="apply_btn" @click="addFilters($event)">Apply</button
+          <button ref="apply_btn" class="apply_btn" @click="addFilters($event)">Apply</button
           ><button class="reset_btn">Reset</button>
         </div>
       </div>
@@ -60,29 +60,44 @@ export default {
   components: { checkboxList },
   data() {
     return {
-      activeCategories:[...this.$store.state.activeFilters.category ],
-      activeBrands:[...this.$store.state.activeFilters.brands],
+      activeCategories:[],
+      activeBrands:[],
     };
   },
   props: {},
   methods: {
-     setActiveCategories(items){ 
+  
+     setActiveCategories(items){
       this.activeCategories = items
-     },
-     setActiveBrands(items){ 
+      if ([...this.activeCategories.filter((item) => item != 'all')].length == [...this.$store.state.activeFilters.category].length) {
+        this.$refs.apply_btn.classList.remove('active')
+      }else{
+        this.$refs.apply_btn.classList.add('active')
+      }
+    },
+    setActiveBrands(items){
       this.activeBrands = items
-     },
-     addFilters(e){
+     if ([...this.activeBrands.filter((item) => item != 'all')].length == [...this.$store.state.activeFilters.brands].length) {
+        this.$refs.apply_btn.classList.remove('active')
+      }else{
+        this.$refs.apply_btn.classList.add('active')
+      }
+    },
+    addFilters(e){
       this.$store.state.activeFilters.category = this.activeCategories
       this.$store.state.activeFilters.brands = this.activeBrands
       this.$store.getters.updateProducts
       this.closeSlideBar(e)
+      this.$refs.apply_btn.classList.remove('active')
      },
     sortProduct(e) {
       this.$store.commit("setSortValue", this.sortValue);
       this.$store.getters.sortProduct;
     },
     openSlideBar(e) {
+      this.activeCategories = this.$store.state.activeFilters.category ,
+  this.activeBrands = this.$store.state.activeFilters.brands,
+         this.$store.getters.filtersCreate;
       document.querySelector("body").style.overflow = "hidden";
       e.target.closest(".filters_row").classList.add("open");
       e.target
@@ -100,8 +115,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.getters.filtersCreate;
-
+  
     this.$store.state.sortValue
       ? (this.sortValue = this.$store.state.sortValue)
       : 0;
@@ -164,7 +178,8 @@ export default {
   gap: 10px;
   align-items: center;
 }
-.apply_btn {
+.apply_btn.active {
+background: red;
 }
 .reset_btn {
 }

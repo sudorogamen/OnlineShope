@@ -43,26 +43,39 @@ export default {
       type: Array
     },
   },
-  mounted(){
-    this.newSelectedItems = [...this.selectedItems]
+  watch:{
+selectedItems(n){
+ this.newSelectedItems = n
+     if (this.newSelectedItems.length === this.checkboxList.length) {
+              this.newSelectedItems.push('all')
+          }
+}
+},
+mounted(){
+   this.newSelectedItems = [...this.selectedItems]
+     if (this.newSelectedItems.length === this.checkboxList.length) {
+              this.newSelectedItems.push('all')
+          }
   },
   methods: {
     toggleSelect(e) {
       if (e.target.value == "all") {
-        if (e.target.checked) {
-          this.newSelectedItems = [...this.checkboxList];
-        } else {
-          this.newSelectedItems = [];
-        }
+ 
+      this.newSelectedItems = [...this.checkboxList,'all'];
+       
       } else {
         if (e.target.checked) {
           if (this.newSelectedItems.length === this.checkboxList.length) {
-              this.newSelectedItems.push('all')
+            this.newSelectedItems.push('all')
           }
         } else {
           this.newSelectedItems = this.newSelectedItems.filter(
-            (c) => c !== e.target.value && c !== 'all'
+            (c) => c !== 'all'
           );
+        
+          if (this.newSelectedItems.length < 1) { 
+             this.newSelectedItems.push(e.target.value )
+          }
         }
       }
       this.$emit('selectedItems', this.newSelectedItems)
@@ -73,6 +86,9 @@ export default {
 </script>
 
 <style scoped>
+.checkboxList.err{
+  color: red;
+}
 .category-selector {
   display: flex;
   flex-direction: column;

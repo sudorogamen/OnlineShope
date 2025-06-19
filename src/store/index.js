@@ -4,7 +4,7 @@ export default createStore({
   state: {
     productsList: [],
     savedPosition: {},
-    sortValue: "",
+    sortValue: "def",
     searchValue: "",
     buyList: [],
     buyItemsCount: 0,
@@ -28,20 +28,35 @@ export default createStore({
   },
   getters: {
     //создание фильтров
-    filtersCreate(state) {
-      let uniqueCategories = [...new Set(MyLlist.map((item) => item.category))];
-      let uniqueBrands = [...new Set(MyLlist.map((item) => item.brand))];
-      let prices = [...new Set(MyLlist.map((item) => item.price))];
+    filtersCreate: (state) => (inputArray) => {
+      console.log(inputArray);
+      
+      let uniqueCategories = [...new Set(inputArray.map((item) => item.category))];
+      let uniqueBrands = [...new Set(inputArray.map((item) => item.brand))];
+      let prices = [...new Set(inputArray.map((item) => item.price))];
       state.filters.category = uniqueCategories;
       state.filters.brands = uniqueBrands;
       state.filters.prices.max = Math.max(...prices);
       state.filters.prices.min = Math.min(...prices);
-      state.activeFilters = state.filters
+      return
     },
+    
+
+
+ activeFiltersReset(state) {
+  Object.assign(state.activeFilters,state.filters)
+ },
+
+
+
+
+
+
+
 
     filtersByCategory(state) {
-      state.productsList = state.productsList.filter((item) => 
-        state.activeFilters.category.includes(item.category)
+      state.productsList = state.productsList.filter((item) =>
+        state.activeFilters.category.includes(item.category) 
      );
     },
     filtersByBrand(state) {
@@ -49,7 +64,15 @@ export default createStore({
         state.activeFilters.brands.includes(item.brand)
      );
     },
+
+
+
+
+
+
     //поиск товаров
+
+    
     searchProduct(state) {
       state.productsList = [];
       MyLlist.forEach((el) => {
@@ -95,8 +118,14 @@ export default createStore({
         state.productsList = MyLlist;
       } else {
         getters.searchProduct;
-        state.activeFilters = state.filters
       }
+
+
+
+      getters.filtersCreate([...state.productsList]);
+
+
+      
       if (state.activeFilters.category.length) {
         getters.filtersByCategory
       }
@@ -113,7 +142,7 @@ export default createStore({
   },
   mutations: {
     setProductsList(state, value) {
-      state.productsList = $store.getters.get;
+      // state.productsList = $store.getters.get;
     },
     setSortValue(state, value) {
       state.sortValue = value;

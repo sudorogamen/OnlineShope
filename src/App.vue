@@ -14,19 +14,19 @@ export default {
   },
   data() {
     return {
-      categorie:[],
+      
     };
   },
   props: {},
   methods: {},
 
   beforeMount() {
-    this.$store.getters.filtersCreate;
     this.$store.getters.updateProducts;  
-
+    this.$store.getters.activeFiltersReset;
   },
-   mounted() {
-this.categorie = this.$store.state.filters.barnds
+  mounted() {
+ 
+
    }
 };
 </script>

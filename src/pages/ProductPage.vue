@@ -66,7 +66,7 @@ close(e){
   },
   mounted(){
     this.product = this.$store.state.productsList.find(item => item.id == this.$route.params.id)
-    
+    this.$store.getters.filtersCreate;
   }
 };
 </script>
