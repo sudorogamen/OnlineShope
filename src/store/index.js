@@ -29,8 +29,6 @@ export default createStore({
   getters: {
     //создание фильтров
     filtersCreate: (state) => (inputArray) => {
-      console.log(inputArray);
-      
       let uniqueCategories = [...new Set(inputArray.map((item) => item.category))];
       let uniqueBrands = [...new Set(inputArray.map((item) => item.brand))];
       let prices = [...new Set(inputArray.map((item) => item.price))];

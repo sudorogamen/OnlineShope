@@ -25,7 +25,8 @@
          <button class="couny_plus_btn" @click="this.productCount++">+</button>
        </div>
      </div>
-     <button @click="addBuyProduct" class="buy_button">Add to cart</button>
+     <button @click="addBuyProduct($event)" class="buy_button" ref="add_to_cart_btn">Add to cart</button>
+     <div class="product-thumb">📦</div>
     </div>
   </div>
 </template>
@@ -48,8 +49,34 @@ export default {
     // Доступно как props
   },
   methods: {
-    addBuyProduct(){  
+    addBuyProduct(e){  
       this.$store.commit('addBuyProduct', {...this.product, count:this.productCount})
+      
+
+
+
+
+  const thumb = document.querySelector('.product-thumb');
+  const buttonRect = e.target.getBoundingClientRect();
+  const cartIconRect = this.$refs.cart_icon
+  console.log(buttonRect);
+  console.log(cartIconRect);
+  
+  thumb.style.left = (buttonRect.left ) + 'px';
+  thumb.style.top = (buttonRect.top ) + 'px';
+  thumb.classList.add('fly');
+  
+  setTimeout(() => {
+    thumb.classList.remove('fly');
+  }, 800);
+
+
+
+
+
+
+
+
     },
 open(){
   document.querySelector('.slider_container').classList.add('open')
@@ -228,7 +255,16 @@ height: auto;
 
 }
 
-
+.product-thumb {
+  position: fixed;
+  opacity: 0;
+  font-size: 20px;
+  transition: all 0.8s cubic-bezier(0.5, -0.5, 1, 1);
+}
+.fly {
+  opacity: 1;
+ 
+}
 
 
 

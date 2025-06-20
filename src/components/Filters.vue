@@ -24,15 +24,17 @@
           <div class="filters_title">Filters</div>
 
           <div class="category_filters">
+            <p>--------------------------</p>
             <ul class="category_filters_list">
               <checkboxList
-                :checkboxList="this.$store.state.filters.category"
-                :selectedItems="this.$store.state.activeFilters.category"
-                @selectedItems="setActiveCategories"
+              :checkboxList="this.$store.state.filters.category"
+              :selectedItems="this.$store.state.activeFilters.category"
+              @selectedItems="setActiveCategories"
               ></checkboxList>
             </ul>
           </div>
           <div class="brand_filters">
+            <p>--------------------------</p>
             <ul class="brand_filters_list">
               <checkboxList
                 :checkboxList="this.$store.state.filters.brands"

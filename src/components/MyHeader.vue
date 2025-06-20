@@ -44,7 +44,7 @@
       <button class="search_btn" type="submit" @focus="search($event)"></button>
     </form>
     <div class="header_cart_row">
-      <button @click="openModal($event)" class="header_cart_button">
+      <button @click="openModal($event)" ref="cart_icon" class="header_cart_button">
         <img
           src="https://i.postimg.cc/tC7qW03X/17701365.png"
           alt=""
@@ -262,17 +262,7 @@ input:focus[type="search"] {
   width: 30px;
   height: 30px;
 }
-/* .header_cart_button::before {
- content: "";
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  %3E%3Cpath fill='rgba(255, 89, 0, 1)' d='M12 2c-0.26712 0.00003-0.52312 0.10694-0.71094 0.29688l-10.08594 8.80078c-0.12774 0.09426-0.20313 0.24359-0.20312 0.40234 0 0.27614 0.22386 0.5 0.5 0.5h2.5v8c0 0.552 0.448 1 1 1h4c0.552 0 1-0.448 1-1v-6h4v6c0 0.552 0.448 1 1 1h4c0.552 0 1-0.448 1-1v-8h2.5c0.27614 0 0.5-0.22386 0.5-0.5 0.00001-0.15876-0.07538-0.30808-0.20312-0.40234l-10.08008-8.79492c-0.00194-0.00196-0.0039-0.00391-0.00586-0.00586-0.18782-0.18994-0.44382-0.29684-0.71094-0.29687z'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  
-} */
+
 .cart_text {
   font-size: 20px;
 }
