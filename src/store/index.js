@@ -125,7 +125,7 @@ export default createStore({
       getters.filtersCreate([...state.productsList]);
 
 
-      
+
       if (state.activeFilters.category.length) {
         getters.filtersByCategory
       }

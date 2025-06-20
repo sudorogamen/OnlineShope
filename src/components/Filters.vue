@@ -60,6 +60,7 @@ export default {
   components: { checkboxList },
   data() {
     return {
+      sortValue:'',
       activeCategories:[],
       activeBrands:[],
     };
