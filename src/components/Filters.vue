@@ -45,8 +45,7 @@
           </div>
         </div>
         <div class="filters_slideBar_buttons">
-          <button ref="apply_btn" class="apply_btn" @click="addFilters($event)">Apply</button
-          ><button class="reset_btn">Reset</button>
+          <button ref="apply_btn" class="apply_btn" @click="addFilters($event)">Apply</button>
         </div>
       </div>
       <div
@@ -172,6 +171,14 @@ export default {
   overflow-y: auto;
   flex: 1 1 100%;
 }
+.filters_content li > :not(:first-child) {
+  padding-left: 10px;
+}
+
+/* .filters_content ul:first-child{
+  background: red;
+  padding-left: 10px;
+} */
 
 .filters_slideBar_buttons {
   height: 60px;
@@ -181,8 +188,18 @@ export default {
   gap: 10px;
   align-items: center;
 }
+.apply_btn{
+  transition: 0.6s;
+  opacity: 0;
+  margin: 0 20px;
+  background: var(--accent-color);
+  padding-block: 8px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
 .apply_btn.active {
-background: red;
+  opacity: 1;
 }
 .reset_btn {
 }

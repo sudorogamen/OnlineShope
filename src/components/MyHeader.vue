@@ -44,7 +44,7 @@
       <button class="search_btn" type="submit" @focus="search($event)"></button>
     </form>
     <div class="header_cart_row">
-      <button @click="openModal($event)" ref="cart_icon" class="header_cart_button">
+      <button @click="openModal($event)" class="header_cart_button">
         <img
           src="https://i.postimg.cc/tC7qW03X/17701365.png"
           alt=""
@@ -124,6 +124,7 @@ export default {
       if (event.target === event.currentTarget) return;
       this.searchValue = "";
       this.$store.commit("setSearchValue", this.searchValue);
+      this.$store.getters.activeFiltersReset;
       this.$store.getters.updateProducts;
       this.$router.push("/");
     },

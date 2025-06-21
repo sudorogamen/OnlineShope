@@ -46,6 +46,9 @@ export default {
   watch:{
 selectedItems(n){
  this.newSelectedItems = n
+ this.newSelectedItems = this.newSelectedItems.filter(item =>
+  this.checkboxList.includes(item)
+ )
      if (this.newSelectedItems.length === this.checkboxList.length) {
               this.newSelectedItems.push('all')
           }
@@ -53,6 +56,9 @@ selectedItems(n){
 },
 mounted(){
    this.newSelectedItems = [...this.selectedItems]
+    this.newSelectedItems = this.newSelectedItems.filter(item =>
+        this.checkboxList.includes(item)
+ )
      if (this.newSelectedItems.length === this.checkboxList.length) {
               this.newSelectedItems.push('all')
           }
@@ -60,11 +66,10 @@ mounted(){
   methods: {
     toggleSelect(e) {
       if (e.target.value == "all") {
- 
       this.newSelectedItems = [...this.checkboxList,'all'];
-       
       } else {
         if (e.target.checked) {
+          
           if (this.newSelectedItems.length === this.checkboxList.length) {
             this.newSelectedItems.push('all')
           }

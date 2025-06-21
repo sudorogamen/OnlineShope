@@ -1,5 +1,5 @@
 <template>
-  <div class="prodct_container">
+  <div ref="prodct_container" class="prodct_container">
     <RouterLink to="/" class="back_link"></RouterLink>
     <div class="slider_container">
       <swiper class="slider_comp" @openFull="open" :slides="this.product.src"></swiper>
@@ -26,7 +26,6 @@
        </div>
      </div>
      <button @click="addBuyProduct($event)" class="buy_button" ref="add_to_cart_btn">Add to cart</button>
-     <div class="product-thumb">📦</div>
     </div>
   </div>
 </template>
@@ -55,19 +54,25 @@ export default {
 
 
 
+e.target.setAttribute('disabled', '');
+let thumb = document.createElement("div");
+thumb.innerHTML = `📦`
+thumb.classList.add("product-thumb")
+this.$refs.prodct_container.append(thumb)
+const cartIconRect = document.querySelector('.header_cart_button').getBoundingClientRect();
+const buttonRect = e.target.getBoundingClientRect();
+console.log(buttonRect);
+console.log(cartIconRect);
+thumb.style.position = 'fixed'
+thumb.style.left = (buttonRect.left ) + 'px';
+thumb.style.top = (buttonRect.top ) + 'px';
+thumb.style.transition ='all 0.8s'
+thumb.style.left = (cartIconRect.left ) + 'px';
+thumb.style.top = (cartIconRect.top ) + 'px';
 
-  const thumb = document.querySelector('.product-thumb');
-  const buttonRect = e.target.getBoundingClientRect();
-  const cartIconRect = this.$refs.cart_icon
-  console.log(buttonRect);
-  console.log(cartIconRect);
-  
-  thumb.style.left = (buttonRect.left ) + 'px';
-  thumb.style.top = (buttonRect.top ) + 'px';
-  thumb.classList.add('fly');
-  
-  setTimeout(() => {
-    thumb.classList.remove('fly');
+setTimeout(() => {
+    e.target.removeAttribute('disabled');
+   thumb.remove()
   }, 800);
 
 
@@ -111,6 +116,7 @@ close(e){
     background:var(--main-bg-color);
   position: fixed;
   top: 0;
+  
   left: 0;
   width: 100%;    
   display: block;
@@ -255,16 +261,14 @@ height: auto;
 
 }
 
-.product-thumb {
+.product-thumb{
   position: fixed;
-  opacity: 0;
+  top: 0;
+  left: 0;
   font-size: 20px;
-  transition: all 0.8s cubic-bezier(0.5, -0.5, 1, 1);
+  transition: 0.8s ;
 }
-.fly {
-  opacity: 1;
- 
-}
+
 
 
 
