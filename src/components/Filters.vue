@@ -25,6 +25,7 @@
 
           <div class="category_filters">
             <p>--------------------------</p>
+            <p>By Category:</p>
             <ul class="category_filters_list">
               <checkboxList
               :checkboxList="this.$store.state.filters.category"
@@ -35,6 +36,7 @@
           </div>
           <div class="brand_filters">
             <p>--------------------------</p>
+            <p>By Brand:</p>
             <ul class="brand_filters_list">
               <checkboxList
                 :checkboxList="this.$store.state.filters.brands"
@@ -170,15 +172,16 @@ export default {
 .filters_content {
   overflow-y: auto;
   flex: 1 1 100%;
+  
+}
+.filters_content ul{
+  padding-left: 10px;
 }
 .filters_content li > :not(:first-child) {
   padding-left: 10px;
 }
 
-/* .filters_content ul:first-child{
-  background: red;
-  padding-left: 10px;
-} */
+
 
 .filters_slideBar_buttons {
   height: 60px;

@@ -42,7 +42,7 @@ export default createStore({
 
 
  activeFiltersReset(state) {
-  Object.assign(state.activeFilters,state.filters)
+  state.activeFilters = {...state.filters}
  },
 
 
@@ -112,11 +112,7 @@ export default createStore({
     //обновление списка товааров
     updateProducts(state, getters) {
       //проверка поиска
-      if (state.searchValue == "") {
-        state.productsList = MyLlist;
-      } else {
-        getters.searchProduct;
-      }
+      getters.searchProduct;
 
 
 
