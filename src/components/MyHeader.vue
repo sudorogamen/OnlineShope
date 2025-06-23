@@ -127,7 +127,7 @@ export default {
       if (event.target === event.currentTarget) return;
       this.searchValue = "";
       this.$store.commit("setSearchValue", this.searchValue);
-      this.$store.getters.activeFiltersReset;
+      this.$store.commit('activeFiltersReset')
       this.$store.getters.updateProducts;
       this.$router.push("/");
     },
