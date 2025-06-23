@@ -36,14 +36,12 @@ export default createStore({
       state.filters.brands = uniqueBrands;
       state.filters.prices.max = Math.max(...prices);
       state.filters.prices.min = Math.min(...prices);
+      console.log('fil',state.filters);
       return
     },
     
 
 
- activeFiltersReset(state) {
-  state.activeFilters = {...state.filters}
- },
 
 
 
@@ -52,7 +50,8 @@ export default createStore({
 
 
 
-    filtersByCategory(state) {
+ 
+ filtersByCategory(state) {
       state.productsList = state.productsList.filter((item) =>
         state.activeFilters.category.includes(item.category) 
      );
@@ -64,26 +63,31 @@ export default createStore({
     },
 
 
-
+    
 
 
 
     //поиск товаров
 
     
-    searchProduct(state) {
+    searchProduct(state,getters) {
+      getters.filtersCreate([...MyLlist]);
+ 
       state.productsList = [];
       MyLlist.forEach((el) => {
         if (
           el.name
-            .replace(/\s/g, "")
-            .toUpperCase()
-            .trim()
-            .includes(state.searchValue.replace(/\s/g, "").toUpperCase().trim())
+          .replace(/\s/g, "")
+          .toUpperCase()
+          .trim()
+          .includes(state.searchValue.replace(/\s/g, "").toUpperCase().trim())
         ) {
           state.productsList.push({ ...el });
         }
+        
       });
+      console.log(state.productsList);
+
     },
 
 
@@ -108,15 +112,20 @@ export default createStore({
         });
       }
     },
-
+    
     //обновление списка товааров
     updateProducts(state, getters) {
+      console.log('-----------------------------------');
       //проверка поиска
+      // if (state.searchValue == '') {
+      //   state.productsList = [...MyLlist]
+      // } else {
+      // }
       getters.searchProduct;
 
-
-
       getters.filtersCreate([...state.productsList]);
+
+
 
 
 
@@ -131,10 +140,17 @@ export default createStore({
         getters.sortProduct;
       }
 
+      console.log('-----------------------------------');
       return state.productsList;
     },
+    
   },
   mutations: {
+     activeFiltersReset(state) {
+  state.activeFilters = {...state.filters}
+  console.log('act', state.activeFilters);
+  
+ },
     setProductsList(state, value) {
       // state.productsList = $store.getters.get;
     },

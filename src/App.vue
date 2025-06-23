@@ -22,7 +22,7 @@ export default {
 
   beforeMount() {
     this.$store.getters.updateProducts;  
-    this.$store.getters.activeFiltersReset;
+      this.$store.commit('activeFiltersReset')
   },
   mounted() {
  

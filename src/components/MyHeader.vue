@@ -60,46 +60,49 @@
         </div>
         <button class="close_btn" @click="close_modal($event)"></button>
         <ul class="cart_list">
-           <li class="cart_item_row" v-for="product in this.$store.state.buyList">
-          <img :src="product.src[0]" class="image_card" />
-          <div class="product_description">
-            <h3 class="product_title">{{ product.name }}</h3>
-            <span class="price">{{ product.price }} ₽</span>
-          </div>
-          <div class="product_total_price">
-            <div>{{ product.price * product.count }} ₽</div>
-            <div class="prodct_count_box">
-              <button
-                class="couny_minus_btn"
-                @click="
-                  this.$store.commit('setBuyItemsCount', {
-                    id: product.id,
-                    value: 'minus',
-                  })
-                "
-              >
-                -
-              </button>
-              <div class="prodct_count">{{ product.count }}</div>
-              <button
-                class="couny_plus_btn"
-                @click="
-                  this.$store.commit('setBuyItemsCount', {
-                    id: product.id,
-                    value: 'plus',
-                  })
-                "
-              >
-                +
-              </button>
+          <li
+            class="cart_item_row"
+            v-for="product in this.$store.state.buyList"
+          >
+            <img :src="product.src[0]" class="image_card" />
+            <div class="product_description">
+              <h3 class="product_title">{{ product.name }}</h3>
+              <span class="price">{{ product.price }} ₽</span>
             </div>
-          </div>
-          <button @click="delite(product)" class="delite_btn"></button>
-        </li>
+            <div class="product_total_price">
+              <div>{{ product.price * product.count }} ₽</div>
+              <div class="prodct_count_box">
+                <button
+                  class="couny_minus_btn"
+                  @click="
+                    this.$store.commit('setBuyItemsCount', {
+                      id: product.id,
+                      value: 'minus',
+                    })
+                  "
+                >
+                  -
+                </button>
+                <div class="prodct_count">{{ product.count }}</div>
+                <button
+                  class="couny_plus_btn"
+                  @click="
+                    this.$store.commit('setBuyItemsCount', {
+                      id: product.id,
+                      value: 'plus',
+                    })
+                  "
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <button @click="delite(product)" class="delite_btn"></button>
+          </li>
         </ul>
         <div class="total_sum" v-show="this.$store.state.buyList.length > 0">
           <div>Total price: {{ this.$store.state.totalSum }}</div>
-          <button  class="buy_button">Go to pay</button>
+          <button class="buy_button">Go to pay</button>
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>
@@ -133,14 +136,15 @@ export default {
     },
     search(e) {
       this.$store.commit("setSearchValue", this.searchValue);
-      this.$store.getters.activeFiltersReset;
+      // this.$store.getters.filtersCreate([...this.$store.state.productsList])
+      this.$store.commit('activeFiltersReset')
       this.$store.getters.updateProducts;
-      this.$store.state.savedPosition = { y:0}
+      this.$store.state.savedPosition = { y: 0 };
       this.$router.push("/");
       this.blur(e);
     },
     openModal(e) {
-       document.querySelector("body").style.overflow = "hidden";
+      document.querySelector("body").style.overflow = "hidden";
       e.target
         .closest(".header_cart_row")
         .querySelector(".cart_modal")
@@ -151,7 +155,7 @@ export default {
         .classList.add("open");
     },
     close_modal(e) {
-       document.querySelector("body").style.overflow = "visible";
+      document.querySelector("body").style.overflow = "visible";
       e.target
         .closest("body")
         .querySelector(".cart_modal")
@@ -298,7 +302,7 @@ input:focus[type="search"] {
   opacity: 1;
   height: auto;
 }
-.cart_list{
+.cart_list {
   height: auto;
   max-height: 350px;
   overflow: hidden;
@@ -329,17 +333,17 @@ input:focus[type="search"] {
   flex-direction: column;
   padding: 20px;
 }
-.total_sum{
+.total_sum {
   margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.buy_button{
+.buy_button {
   align-self: flex-end;
   width: 200px;
   color: white;
-  background:var(--accent-color);
+  background: var(--accent-color);
   height: 30px;
   border-radius: 6px;
   font-weight: 900;
@@ -419,19 +423,17 @@ input:focus[type="search"] {
   }
 }
 @media (max-width: 550px) {
-  .total_sum{
-}
-.buy_button{
-
-  width: 120px;
-  color: white;
-  background:var(--accent-color);
-  height: 30px;
-  border-radius: 6px;
-  font-weight: 900;
-  font-size: 16px;
-  
-}
+  .total_sum {
+  }
+  .buy_button {
+    width: 120px;
+    color: white;
+    background: var(--accent-color);
+    height: 30px;
+    border-radius: 6px;
+    font-weight: 900;
+    font-size: 16px;
+  }
   .cart_modal {
     width: 350px;
   }

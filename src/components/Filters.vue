@@ -101,7 +101,7 @@ export default {
     openSlideBar(e) {
       this.activeCategories = this.$store.state.activeFilters.category ,
   this.activeBrands = this.$store.state.activeFilters.brands,
-         this.$store.getters.filtersCreate;
+      //this.$store.getters.filtersCreate([...this.$store.state.productsList])
       document.querySelector("body").style.overflow = "hidden";
       e.target.closest(".filters_row").classList.add("open");
       e.target
@@ -181,6 +181,21 @@ export default {
   padding-left: 10px;
 }
 
+.filters_content ul li div:after {
+  content: "x";
+  position: absolute;
+  left: 4px;
+  top: 2px;
+}
+
+
+
+
+
+
+
+
+
 
 
 .filters_slideBar_buttons {
@@ -203,8 +218,6 @@ export default {
 }
 .apply_btn.active {
   opacity: 1;
-}
-.reset_btn {
 }
 
 .close_btn {
