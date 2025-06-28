@@ -22,20 +22,17 @@
 
         <div class="filters_content">
           <div class="filters_title">Filters</div>
-
-          <div class="category_filters">
-            <p>--------------------------</p>
-            <p>By Category:</p>
-            <ul class="category_filters_list">
-              <checkboxList
-              :checkboxList="this.$store.state.filters.category"
-              :selectedItems="this.$store.state.activeFilters.category"
-              @selectedItems="setActiveCategories"
-              ></checkboxList>
-            </ul>
-          </div>
+            <div class="category_filters">
+              <p>By Category:</p>
+              <ul class="category_filters_list">
+                <checkboxList
+                :checkboxList="this.$store.state.filters.category"
+                :selectedItems="this.$store.state.activeFilters.category"
+                @selectedItems="setActiveCategories"
+                ></checkboxList>
+              </ul>
+            </div>   
           <div class="brand_filters">
-            <p>--------------------------</p>
             <p>By Brand:</p>
             <ul class="brand_filters_list">
               <checkboxList
@@ -46,8 +43,8 @@
             </ul>
           </div>
         </div>
-        <div class="filters_slideBar_buttons">
-          <button ref="apply_btn" class="apply_btn" @click="addFilters($event)">Apply</button>
+        <div ref="apply_btn"  class="filters_slideBar_buttons">
+          <button class="apply_btn" @click="addFilters($event)">Apply</button>
         </div>
       </div>
       <div
@@ -150,6 +147,7 @@ export default {
   border-radius: 10px;
 }
 .filters_slideBar {
+ 
   max-height: 100%;
   height: 100%;
   background: var(--main-bg-color);
@@ -170,12 +168,17 @@ export default {
 }
 
 .filters_content {
+   padding-bottom: 60px;
+  padding-top: 10px;
   overflow-y: auto;
   flex: 1 1 100%;
-  
-}
-.filters_content ul{
   padding-left: 10px;
+}
+.filters_content div + div{
+    padding-block: 10px;
+  border-top: 1px solid var(--accent-color);
+  margin-top: 10px;
+
 }
 .filters_content li > :not(:first-child) {
   padding-left: 10px;
@@ -199,12 +202,18 @@ export default {
 
 
 .filters_slideBar_buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   height: 60px;
+  opacity: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 10px;
   align-items: center;
+  transition: 0.6s;
+  background: none;
 }
 .apply_btn{
   transition: 0.6s;
@@ -216,7 +225,11 @@ export default {
   width: 100%;
   max-width: 400px;
 }
-.apply_btn.active {
+.filters_slideBar_buttons.active{
+
+  opacity: 1;
+}
+.filters_slideBar_buttons.active .apply_btn{
   opacity: 1;
 }
 
