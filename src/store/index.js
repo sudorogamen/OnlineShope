@@ -36,7 +36,6 @@ export default createStore({
       state.filters.brands = uniqueBrands;
       state.filters.prices.max = Math.max(...prices);
       state.filters.prices.min = Math.min(...prices);
-      console.log('fil',state.filters);
       return
     },
     
@@ -86,7 +85,7 @@ export default createStore({
         }
         
       });
-      console.log(state.productsList);
+ 
 
     },
 
@@ -115,7 +114,7 @@ export default createStore({
     
     //обновление списка товааров
     updateProducts(state, getters) {
-      console.log('-----------------------------------');
+     
       //проверка поиска
       // if (state.searchValue == '') {
       //   state.productsList = [...MyLlist]
@@ -140,7 +139,7 @@ export default createStore({
         getters.sortProduct;
       }
 
-      console.log('-----------------------------------');
+     
       return state.productsList;
     },
     
@@ -148,12 +147,10 @@ export default createStore({
   mutations: {
      activeFiltersReset(state) {
   state.activeFilters = {...state.filters}
-  console.log('act', state.activeFilters);
+  this.getters.updateProducts
+ 
   
  },
-    setProductsList(state, value) {
-      // state.productsList = $store.getters.get;
-    },
     setSortValue(state, value) {
       state.sortValue = value;
     },

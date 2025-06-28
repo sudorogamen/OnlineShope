@@ -127,8 +127,8 @@ export default {
       if (event.target === event.currentTarget) return;
       this.searchValue = "";
       this.$store.commit("setSearchValue", this.searchValue);
-      this.$store.commit('activeFiltersReset')
       this.$store.getters.updateProducts;
+      this.$store.commit('activeFiltersReset')
       this.$router.push("/");
     },
     blur(e) {
@@ -137,8 +137,8 @@ export default {
     search(e) {
       this.$store.commit("setSearchValue", this.searchValue);
       // this.$store.getters.filtersCreate([...this.$store.state.productsList])
-      this.$store.commit('activeFiltersReset')
       this.$store.getters.updateProducts;
+      this.$store.commit('activeFiltersReset')
       this.$store.state.savedPosition = { y: 0 };
       this.$router.push("/");
       this.blur(e);
