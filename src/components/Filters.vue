@@ -22,16 +22,16 @@
 
         <div class="filters_content">
           <div class="filters_title">Filters</div>
-            <div class="category_filters">
-              <p>By Category:</p>
-              <ul class="category_filters_list">
-                <checkboxList
+          <div class="category_filters">
+            <p>By Category:</p>
+            <ul class="category_filters_list">
+              <checkboxList
                 :checkboxList="this.$store.state.filters.category"
                 :selectedItems="this.$store.state.activeFilters.category"
                 @selectedItems="setActiveCategories"
-                ></checkboxList>
-              </ul>
-            </div>   
+              ></checkboxList>
+            </ul>
+          </div>
           <div class="brand_filters">
             <p>By Brand:</p>
             <ul class="brand_filters_list">
@@ -43,7 +43,7 @@
             </ul>
           </div>
         </div>
-        <div ref="apply_btn"  class="filters_slideBar_buttons">
+        <div ref="apply_btn" class="filters_slideBar_buttons">
           <button class="apply_btn" @click="addFilters($event)">Apply</button>
         </div>
       </div>
@@ -60,46 +60,54 @@ export default {
   components: { checkboxList },
   data() {
     return {
-      sortValue:'',
-      activeCategories:[],
-      activeBrands:[],
+      sortValue: "",
+      activeCategories: [],
+      activeBrands: [],
+      btnActive: false,
     };
   },
   props: {},
   methods: {
-  
-     setActiveCategories(items){
-      this.activeCategories = items
-      if ([...this.activeCategories.filter((item) => item != 'all')].length == [...this.$store.state.activeFilters.category].length) {
-        this.$refs.apply_btn.classList.remove('active')
-      }else{
-        this.$refs.apply_btn.classList.add('active')
-      }
+    setActiveCategories(items) {
+      this.activeCategories = items;
+      this.activaApplyBtn();
     },
-    setActiveBrands(items){
-      this.activeBrands = items
-     if ([...this.activeBrands.filter((item) => item != 'all')].length == [...this.$store.state.activeFilters.brands].length) {
-        this.$refs.apply_btn.classList.remove('active')
-      }else{
-        this.$refs.apply_btn.classList.add('active')
-      }
+    setActiveBrands(items) {
+      this.activeBrands = items;
+      this.activaApplyBtn();
     },
-    addFilters(e){
-      this.$store.state.activeFilters.category = this.activeCategories
-      this.$store.state.activeFilters.brands = this.activeBrands
-      this.$store.getters.updateProducts
-      this.closeSlideBar(e)
-      this.$refs.apply_btn.classList.remove('active')
-     },
+    activaApplyBtn() {
+      if (
+        ([...this.activeCategories.filter((item) => item != "all")].length ==
+        [...this.$store.state.activeFilters.category].length) 
+        &&
+       ([...this.activeBrands.filter((item) => item != "all")].length ==
+        [...this.$store.state.activeFilters.brands].length)
+      ) {
+        this.btnActive = false;
+      } else {
+        this.btnActive = true;
+      }
+      this.btnActive
+        ? this.$refs.apply_btn.classList.add("active")
+        : this.$refs.apply_btn.classList.remove("active");
+    },
+    addFilters(e) {
+      this.$store.state.activeFilters.category = this.activeCategories;
+      this.$store.state.activeFilters.brands = this.activeBrands;
+      this.$store.getters.updateProducts;
+      this.closeSlideBar(e);
+      this.$refs.apply_btn.classList.remove("active");
+    },
     sortProduct(e) {
       this.$store.commit("setSortValue", this.sortValue);
       this.$store.getters.sortProduct;
     },
     openSlideBar(e) {
-      this.activeCategories = this.$store.state.activeFilters.category ,
-  this.activeBrands = this.$store.state.activeFilters.brands,
-      //this.$store.getters.filtersCreate([...this.$store.state.productsList])
-      document.querySelector("body").style.overflow = "hidden";
+      (this.activeCategories = this.$store.state.activeFilters.category),
+        (this.activeBrands = this.$store.state.activeFilters.brands),
+        //this.$store.getters.filtersCreate([...this.$store.state.productsList])
+        (document.querySelector("body").style.overflow = "hidden");
       e.target.closest(".filters_row").classList.add("open");
       e.target
         .closest(".filters_row")
@@ -116,7 +124,6 @@ export default {
     },
   },
   mounted() {
-  
     this.$store.state.sortValue
       ? (this.sortValue = this.$store.state.sortValue)
       : 0;
@@ -147,7 +154,6 @@ export default {
   border-radius: 10px;
 }
 .filters_slideBar {
- 
   max-height: 100%;
   height: 100%;
   background: var(--main-bg-color);
@@ -168,17 +174,16 @@ export default {
 }
 
 .filters_content {
-   padding-bottom: 60px;
+  padding-bottom: 60px;
   padding-top: 10px;
   overflow-y: auto;
   flex: 1 1 100%;
   padding-left: 10px;
 }
-.filters_content div + div{
-    padding-block: 10px;
+.filters_content div + div {
+  padding-block: 10px;
   border-top: 1px solid var(--accent-color);
   margin-top: 10px;
-
 }
 .filters_content li > :not(:first-child) {
   padding-left: 10px;
@@ -190,16 +195,6 @@ export default {
   left: 4px;
   top: 2px;
 }
-
-
-
-
-
-
-
-
-
-
 
 .filters_slideBar_buttons {
   position: absolute;
@@ -215,7 +210,7 @@ export default {
   transition: 0.6s;
   background: none;
 }
-.apply_btn{
+.apply_btn {
   transition: 0.6s;
   opacity: 0;
   margin: 0 20px;
@@ -225,11 +220,10 @@ export default {
   width: 100%;
   max-width: 400px;
 }
-.filters_slideBar_buttons.active{
-
+.filters_slideBar_buttons.active {
   opacity: 1;
 }
-.filters_slideBar_buttons.active .apply_btn{
+.filters_slideBar_buttons.active .apply_btn {
   opacity: 1;
 }
 
