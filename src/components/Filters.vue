@@ -71,84 +71,13 @@ export default {
 
     setActiveCategories(items) {
       this.activeCategories = items;
-      this.activaApplyBtn();
+      this.$refs.apply_btn.classList.add("active") 
     },
     setActiveBrands(items) {
       this.activeBrands = items;
-      this.activaApplyBtn();
+      this.$refs.apply_btn.classList.add("active") 
     },
-activaApplyBtn() {
-let should     
-let actCategoryArr = [...this.$store.state.activeFilters.category];
-let newCategoryArr = [...this.activeCategories.filter(item => item !== 'all')];
-let actBrandArr = [...this.$store.state.activeFilters.brands];
-let newBrandArr = [...this.activeBrands.filter(item => item !== 'all')];
-function check(arr1, arr2){
-  let shouldShowButton
-  arr1.sort()
-  arr2.sort()
-  if (arr1.length !== arr2.length) {
-    shouldShowButton = true
-    console.log('len',shouldShowButton);
-    
-  }else{
-      for (const el of arr2) {
-      console.log(el);
-      
-   if (!arr1.includes(el)) {
-     shouldShowButton = true
-     console.log('incl',shouldShowButton);
-     break
-    }
-    shouldShowButton = false
-    console.log('all ok',shouldShowButton);
-  };
-  }
-  return shouldShowButton
-  
-}
 
-
-
-
-
-
-
-//check(actCategoryArr,newCategoryArr)
-console.log('---------------------------------');
-console.log(check(actCategoryArr,newCategoryArr));
-console.log(check(actBrandArr,newBrandArr));
-
-
-
-
-
-
-should =  !check(actCategoryArr,newCategoryArr) && !check(actBrandArr,newBrandArr)
-
-console.log("should:",should);
-
-
-!should? this.$refs.apply_btn.classList.add("active") : this.$refs.apply_btn.classList.remove("active");
-
-console.log('---------------------------------');
-      this.$store.getters.updateProducts;
-
-      // if (
-      //   ([...this.activeCategories.filter((item) => item != "all" )].length ==
-      //   [...this.$store.state.activeFilters.category].length) 
-      //   &&
-      //  ([...this.activeBrands.filter((item) => item != "all")].length ==
-      //   [...this.$store.state.activeFilters.brands].length)
-      // ) {
-      //   this.btnActive = false;
-      // } else {
-      //   this.btnActive = true;
-      // }
-      // this.btnActive
-      //   ? this.$refs.apply_btn.classList.add("active")
-      //   : this.$refs.apply_btn.classList.remove("active");
-    },
     addFilters(e) {
       this.$store.state.activeFilters.category = this.activeCategories;
       this.$store.state.activeFilters.brands = this.activeBrands;
@@ -255,9 +184,10 @@ console.log('---------------------------------');
 
 .filters_slideBar_buttons {
   position: absolute;
+  visibility: hidden;
   bottom: 0;
   left: 0;
-  height: 60px;
+  height: 0px;
   opacity: 0;
   width: 100%;
   display: flex;
@@ -278,6 +208,8 @@ console.log('---------------------------------');
   max-width: 400px;
 }
 .filters_slideBar_buttons.active {
+  height: 60px;
+  visibility: visible;
   opacity: 1;
 }
 .filters_slideBar_buttons.active .apply_btn {
