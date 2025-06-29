@@ -90,7 +90,9 @@ export default createStore({
     },
 
 
-
+   sortValueReset(state) {
+      state.sortValue = 'def';
+    },
 
 
     //сортировка товаров

@@ -127,6 +127,7 @@ export default {
       if (event.target === event.currentTarget) return;
       this.searchValue = "";
       this.$store.commit("setSearchValue", this.searchValue);
+      this.$store.getters.sortValueReset;
       this.$store.getters.updateProducts;
       this.$store.commit('activeFiltersReset')
       this.$store.state.savedPosition = { y: 0 };
@@ -137,6 +138,7 @@ export default {
     },
     search(e) {
       this.$store.commit("setSearchValue", this.searchValue);
+      this.$store.getters.sortValueReset;
       this.$store.getters.updateProducts;
       this.$store.commit('activeFiltersReset')
       this.$store.state.savedPosition = { y: 0 };
@@ -231,6 +233,7 @@ form input:focus ~ button {
   padding: 15px;
 }
 input[type="search"]::-webkit-search-cancel-button {
+      margin-left: 5px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -461,7 +464,8 @@ input:focus[type="search"] {
   }
   form input:focus + button,
   form input:focus ~ button {
-    width: 35px;
+    margin-right: 5px;
+    width: 40px;
     opacity: 1;
   }
   .search_btn {
@@ -476,19 +480,23 @@ input:focus[type="search"] {
   }
   .header_logo {
     font-size: 15px;
+
   }
   input[type="search"] {
-    padding: 5px;
+    padding-left: 5px;
+    padding-right: 2px;
+    
+    
   }
   input[type="search"]::-webkit-search-cancel-button {
     /* -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     display: none; */
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
   }
-
+  
   .search_input {
     font-size: 12px;
   }

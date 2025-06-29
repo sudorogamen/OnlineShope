@@ -8,7 +8,7 @@
       <div class="sort_row">
         Sort by:
         <select
-          v-model="sortValue"
+          v-model="this.$store.state.sortValue"
           @change="sortProduct($event)"
           class="sort_button"
         >
@@ -60,10 +60,8 @@ export default {
   components: { checkboxList },
   data() {
     return {
-      sortValue: "",
       activeCategories: [],
       activeBrands: [],
-      btnActive: false,
     };
   },
   props: {},
@@ -86,13 +84,11 @@ export default {
       this.$refs.apply_btn.classList.remove("active");
     },
     sortProduct(e) {
-      this.$store.commit("setSortValue", this.sortValue);
       this.$store.getters.sortProduct;
     },
     openSlideBar(e) {
       (this.activeCategories = this.$store.state.activeFilters.category),
         (this.activeBrands = this.$store.state.activeFilters.brands),
-        //this.$store.getters.filtersCreate([...this.$store.state.productsList])
         (document.querySelector("body").style.overflow = "hidden");
       e.target.closest(".filters_row").classList.add("open");
       e.target
@@ -110,9 +106,6 @@ export default {
     },
   },
   mounted() {
-    this.$store.state.sortValue
-      ? (this.sortValue = this.$store.state.sortValue)
-      : 0;
   },
 };
 </script>
