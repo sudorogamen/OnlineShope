@@ -52,7 +52,8 @@
                   type="number"
                   v-model="this.$store.state.activeFilters.prices.min"
                   @input="changePrice($event)"
-                />
+                  />
+                  <span></span>
               </label>
               <label>
                 до
@@ -60,7 +61,8 @@
                   type="number"
                   v-model="this.$store.state.activeFilters.prices.max"
                   @input="changePrice($event)"
-                />
+                  />
+                  <span></span>
               </label>
             </div>
           </div>
@@ -107,8 +109,12 @@ export default {
       e.target.closest(".price_range_inputs").classList.remove("err");
       this.$refs.filters_slideBar_buttons.classList.add("active");
       if (
-        this.$store.state.activeFilters.prices.min >
-        this.$store.state.activeFilters.prices.max
+      (  this.$store.state.activeFilters.prices.min >
+        this.$store.state.activeFilters.prices.max)
+        && 
+        (this.$store.state.activeFilters.prices.min)
+        && 
+        (this.$store.state.activeFilters.prices.max)
       ) {
         e.target.closest(".price_range_inputs").classList.add("err");
         this.$refs.filters_slideBar_buttons.querySelector('.apply_btn').style.opacity = 0.3

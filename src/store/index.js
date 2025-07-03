@@ -62,6 +62,12 @@ export default createStore({
     },
 
  filtersByPrice(state) {
+  if (!state.activeFilters.prices.max) {
+    state.activeFilters.prices.max = state.filters.prices.max 
+  }
+  if (!state.activeFilters.prices.min) {
+    state.activeFilters.prices.min = state.filters.prices.min 
+  }
    state.productsList = state.productsList.filter((item) => 
         (state.activeFilters.prices.max >= item.price) && ( item.price >= state.activeFilters.prices.min)
      );
