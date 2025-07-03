@@ -46,9 +46,10 @@ export default {
 }
 
 :root {
-  --main-bg-color: rgb(10, 14, 19);
-  --accent-color: rgba(255, 89, 0, 1);
-  --border-color: rgba(141, 140, 139, 1);
+  --main-bg-color: rgb(13, 13, 14);
+  /*--main-bg-color: rgb(10, 14, 19); */
+  --accent-color: rgb(255, 89, 0);
+  --border-color: rgb(141, 140, 139);
 }
 
 body {

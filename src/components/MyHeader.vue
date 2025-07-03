@@ -388,14 +388,8 @@ input:focus[type="search"] {
   width: auto;
 }
 
-.image_card {
-}
 .product_description {
   flex: 1 1 100%;
-}
-.product_title {
-}
-.price {
 }
 .product_total_price {
   gap: 5px;
@@ -412,12 +406,6 @@ input:focus[type="search"] {
   border-radius: 10px;
   border: 1px solid var(--border-color);
 }
-.couny_minus_btn {
-}
-.prodct_count {
-}
-.couny_plus_btn {
-}
 
 @media (max-width: 750px) {
   .cart_modal {
@@ -431,8 +419,7 @@ input:focus[type="search"] {
   }
 }
 @media (max-width: 550px) {
-  .total_sum {
-  }
+
   .buy_button {
     width: 120px;
     color: white;
@@ -473,8 +460,7 @@ input:focus[type="search"] {
     width: 40px;
     opacity: 1;
   }
-  .search_btn {
-  }
+
   .header {
     height: 40px;
     gap: 2px;

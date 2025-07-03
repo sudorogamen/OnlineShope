@@ -219,11 +219,9 @@ export default {
 }
 
 .filters_content {
-  padding-bottom: 60px;
-  padding-top: 10px;
   overflow-y: auto;
   flex: 1 1 100%;
-  padding-left: 10px;
+  padding: 10px 10px 60px 10px;
 }
 .filters_content div + div {
   padding-block: 10px;

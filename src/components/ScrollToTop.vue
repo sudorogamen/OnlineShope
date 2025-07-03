@@ -50,7 +50,7 @@ export default {
   cursor: pointer;
   padding: 15px;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 28epx;
   width: 50px;
   height: 50px;
   opacity: 1;

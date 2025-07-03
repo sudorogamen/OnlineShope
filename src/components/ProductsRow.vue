@@ -94,16 +94,13 @@ export default {
   border-radius: 5px;
 }
 
-.product-title {
-}
 
 .product-description,
 .product-price {
   align-self: flex-start;
   font-size: 20px;
 }
-.price {
-}
+
 
 @media (max-width: 399px) {
   .js-products-list {

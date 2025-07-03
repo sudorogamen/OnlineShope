@@ -208,10 +208,7 @@ export default {
   align-items: start;
   gap: 10px;
 }
-.prodct_title {
-}
-.prodct_price {
-}
+
 
 .prodct_desc {
   flex: 0 1 40%;
@@ -233,11 +230,7 @@ export default {
   border-radius: 10px;
   border: 1px solid var(--border-color);
 }
-.couny_minus_btn,
-.couny_plus_btn {
-}
-.prodct_count {
-}
+
 
 .buy_button {
   width: 100%;
@@ -343,35 +336,6 @@ export default {
   .prodct_text_content {
     width: 100%;
     font-size: 20px;
-  }
-
-  /* */
-
-  .back_link {
-  }
-
-  .slider_comp {
-  }
-  .product_overlay {
-  }
-  .close_btn {
-  }
-
-  .prodct_title {
-  }
-  .prodct_price {
-  }
-  .prodct_desc {
-  }
-  .prodct_count_box {
-  }
-  .couny_minus_btn {
-  }
-  .prodct_count {
-  }
-  .couny_plus_btn {
-  }
-  .buy_button {
   }
 }
 </style>
