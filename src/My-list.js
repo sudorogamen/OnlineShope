@@ -333,7 +333,7 @@ const MyLlist = [
 ];
   document.body.style.width = document.sc
 let priceArr = ["2999", "1560", "1999", "1299", "3500", "4290"];
-let categoryArr = ["Clothing", "Electronics"];
+let categoryArr = ["Одежда", "Электроника"];
 let brandArr = ["apple", "sony",'samsung'];
 function getRandomInt(min, max) {
   min = Math.ceil(min); 
@@ -344,8 +344,8 @@ function getRandomInt(min, max) {
 for (let index = 0; index < MyLlist.length; index++) {
   MyLlist[index].price = priceArr[getRandomInt(0, priceArr.length - 1)];
   MyLlist[index].id = index;
-  MyLlist[index].name += (' ' + (index + 1))
-  MyLlist[index].desc = "Some kind of product description in a some lines for more detailed information";
+  MyLlist[index].name = ('Товар №' + (index + 1))
+  MyLlist[index].desc = "Подробное описание товара в одну или нескольео строк";
   MyLlist[index].category = categoryArr[getRandomInt(0, categoryArr.length - 1)]; ;
   MyLlist[index].brand = brandArr[getRandomInt(0, brandArr.length - 1)]; ;
 }

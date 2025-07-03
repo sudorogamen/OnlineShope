@@ -50,13 +50,13 @@
           alt=""
           class="cart_img"
         />
-        <span class="cart_text">Cart</span>
+        <span class="cart_text">Корзина</span>
         <span class="cart_count">{{ this.$store.state.buyItemsCount }}</span>
       </button>
       <div class="cart_modal">
-        <div class="cart_modal_title">Shopping Cart</div>
+        <div class="cart_modal_title">Корзина товаров</div>
         <div v-show="this.$store.state.buyList.length < 1" class="empty_cart">
-          Cart is empty
+          Корзина пуста
         </div>
         <button class="close_btn" @click="close_modal($event)"></button>
         <ul class="cart_list">
@@ -102,7 +102,7 @@
         </ul>
         <div class="total_sum" v-show="this.$store.state.buyList.length > 0">
           <div>Total price: {{ this.$store.state.totalSum }}</div>
-          <button class="buy_button">Go to pay</button>
+          <button class="buy_button">Перейти к оплате</button>
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>

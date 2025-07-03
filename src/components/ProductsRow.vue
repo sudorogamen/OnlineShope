@@ -16,7 +16,7 @@
           ><span> ₽</span>
         </div>
         <button @click="saveToStorage(product,$event)" class="buy-button">
-          Buy now
+          Купить
         </button>
       </li>
     </ul>

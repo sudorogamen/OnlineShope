@@ -2,27 +2,29 @@
   <div>
     <div class="filters_row">
       <button @click="openSlideBar($event)" class="filters_button">
-        Filters
+        Фильтрация
         <div class="filters_icon"><span></span><span></span><span></span></div>
       </button>
       <div class="sort_row">
-        Sort by:
+        <p>
+          Сортировка:
+        </p>
         <select
           v-model="this.$store.state.sortValue"
           @change="sortProduct($event)"
           class="sort_button"
         >
-          <option value="def">Default</option>
-          <option value="up">Ascending</option>
-          <option value="down">Descending</option>
+          <option value="def">По умолчанию</option>
+          <option value="up">По возрастанию</option>
+          <option value="down">По убыванию</option>
         </select>
       </div>
       <div class="filters_slideBar">
         <button class="close_btn" @click="closeSlideBar($event)"></button>
         <div class="filters_content">
-          <div class="filters_title">Filters</div>
+          <div class="filters_title">Фильтрация</div>
           <div class="category_filters">
-            <p>By Category:</p>
+            <p>По категориям:</p>
             <ul class="category_filters_list">
               <checkboxList
                 :checkboxList="this.$store.state.filters.category"
@@ -32,7 +34,7 @@
             </ul>
           </div>
           <div class="brand_filters">
-            <p>By Brand:</p>
+            <p>По брендам:</p>
             <ul class="brand_filters_list">
               <checkboxList
                 :checkboxList="this.$store.state.filters.brands"
@@ -42,7 +44,7 @@
             </ul>
           </div>
           <div class="price_range">
-            <p>By Price:</p>
+            <p>По цене:</p>
             <div class="price_range_inputs">
               <label>
                 от
@@ -62,10 +64,13 @@
               </label>
             </div>
           </div>
+          <div>
+            <button class="reset_def_btn" @click="resDef($event)">Сбросить по умолчанию</button>
+          </div>
         </div>
         <div ref="filters_slideBar_buttons" class="filters_slideBar_buttons">
-          <button class="reset_btn" @click="res($event)">Reset</button>
-          <button class="apply_btn" @click="addFilters($event)">Apply</button>
+          <button class="reset_btn" @click="res($event)">Отмена</button>
+          <button class="apply_btn" @click="addFilters($event)">Применить</button>
         </div>
       </div>
       <div
@@ -88,6 +93,11 @@ export default {
   },
   props: {},
   methods: {
+    resDef(e) {
+      this.$store.commit('activeFiltersReset')
+      this.closeSlideBar(e);
+      this.$refs.filters_slideBar_buttons.classList.remove("active");
+    },
     res(e) {
       this.$store.state.activeFilters = JSON.parse(JSON.stringify(this.saveFilters)),
       this.closeSlideBar(e);
@@ -95,15 +105,20 @@ export default {
     },
     changePrice(e) {
       e.target.closest(".price_range_inputs").classList.remove("err");
+      this.$refs.filters_slideBar_buttons.classList.add("active");
       if (
         this.$store.state.activeFilters.prices.min >
         this.$store.state.activeFilters.prices.max
       ) {
         e.target.closest(".price_range_inputs").classList.add("err");
-        this.$refs.filters_slideBar_buttons.classList.remove("active");
+        this.$refs.filters_slideBar_buttons.querySelector('.apply_btn').style.opacity = 0.3
+        this.$refs.filters_slideBar_buttons.querySelector('.apply_btn').setAttribute("disabled", "")
+        this.$refs.filters_slideBar_buttons.querySelector('.apply_btn').setAttribute("disabled", "")
         return false;
+      }else{
+        this.$refs.filters_slideBar_buttons.querySelector('.apply_btn').style.opacity = 1
+        this.$refs.filters_slideBar_buttons.querySelector('.apply_btn').removeAttribute("disabled")
       }
-      this.$refs.filters_slideBar_buttons.classList.add("active");
     },
     setActiveCategories(items) {
       this.activeCategories = items;
@@ -148,6 +163,9 @@ export default {
 };
 </script>
 <style scoped>
+.sort_row{
+  display: flex;
+}
 .filters_row {
   font-size: 20px;
   display: flex;
@@ -276,7 +294,16 @@ export default {
 .price_range_inputs input:focus {
   border: 1px solid var(--border-color);
 }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
+/* Для Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 .filters_slideBar_buttons.active {
   height: 60px;
   visibility: visible;
@@ -329,6 +356,14 @@ select {
 @media (max-width: 500px) {
   .filters_row.open .filters_slideBar {
     width: 80%;
+  }
+  .filters_icon span {
+  width: 15px;
+  height: 3px;
+
+}
+  .sort_row, .filters_button{
+    font-size: 14px;
   }
 }
 </style>

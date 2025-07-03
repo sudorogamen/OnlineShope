@@ -23,7 +23,7 @@
         <div class="prodct_desc">{{ this.product.brand }}</div>
       </div>
       <div class="total_price">
-        <p>Total price: {{ this.productCount * this.product.price }}</p>
+        <p>Итоговая цена: {{ this.productCount * this.product.price }}</p>
         <div class="prodct_count_box">
           <button
             class="couny_minus_btn"
@@ -44,7 +44,7 @@
         class="buy_button"
         ref="add_to_cart_btn"
       >
-        Add to cart
+        Добавить в корзину
       </button>
     </div>
     <div class="notification">Товар добавлен!</div>
