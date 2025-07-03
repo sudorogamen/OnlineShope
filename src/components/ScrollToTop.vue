@@ -50,14 +50,17 @@ export default {
   cursor: pointer;
   padding: 15px;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 28px;
   width: 50px;
   height: 50px;
   opacity: 1;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scroll-to-top:hover {
-  opacity: 1;
+    box-shadow: 0 0 15px var(--accent-color);
 }
 </style>

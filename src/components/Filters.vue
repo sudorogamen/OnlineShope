@@ -215,7 +215,7 @@ export default {
 .filters_row.open .filters_slideBar {
   opacity: 1;
   z-index: 2;
-  width: 35%;
+  width: 30%;
 }
 
 .filters_content {
@@ -353,6 +353,12 @@ input[type="number"] {
 
 select {
   background: var(--main-bg-color);
+}
+
+.reset_def_btn{
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-color);
 }
 
 @media (max-width: 770px) {
