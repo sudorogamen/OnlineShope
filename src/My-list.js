@@ -340,7 +340,7 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-// document.querySelector('asd').classList.remove
+
 for (let index = 0; index < MyLlist.length; index++) {
   MyLlist[index].price = priceArr[getRandomInt(0, priceArr.length - 1)];
   MyLlist[index].id = index;
@@ -349,6 +349,6 @@ for (let index = 0; index < MyLlist.length; index++) {
   MyLlist[index].category = categoryArr[getRandomInt(0, categoryArr.length - 1)]; ;
   MyLlist[index].brand = brandArr[getRandomInt(0, brandArr.length - 1)]; ;
 }
-MyLlist[0].category = 'llll' ;
+
 
 export default MyLlist;

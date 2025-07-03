@@ -21,10 +21,12 @@
       </li>
     </ul>
   </div>
+  <ScrollToTop></ScrollToTop>
 </template>
 <script>
+import ScrollToTop from './ScrollToTop.vue';
 export default {
-  components: {},
+  components: {ScrollToTop},
   data() {
     return {};
   },

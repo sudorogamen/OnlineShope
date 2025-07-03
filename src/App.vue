@@ -18,7 +18,14 @@ export default {
     };
   },
   props: {},
-  methods: {},
+  methods: {
+    scrollUp(){
+      if( document.body.scrollTop > 300){
+         console.log('ddd');
+      
+      }
+    }
+  },
 
   beforeMount() {
     this.$store.getters.updateProducts;  
