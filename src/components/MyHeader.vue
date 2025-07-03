@@ -101,8 +101,8 @@
           </li>
         </ul>
         <div class="total_sum" v-show="this.$store.state.buyList.length > 0">
-          <div>Итоговая сумма: {{ this.$store.state.totalSum }} ₽</div>
-          <button class="buy_button">Перейти к оплате</button>
+          <div>Итог: {{ this.$store.state.totalSum }} ₽</div>
+          <button class="buy_button">К оплате</button>
         </div>
       </div>
       <div class="modal_overlay" @click="close_modal($event)"></div>

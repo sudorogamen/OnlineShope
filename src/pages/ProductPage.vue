@@ -278,7 +278,7 @@ export default {
   .slider_container.open {
     .slider_comp {
       width: 650px;
-      height: 720px;
+      height: auto;
     }
   }
 }
@@ -287,7 +287,7 @@ export default {
   .slider_container.open {
     .slider_comp {
       width: 450px;
-      height: 600px;
+      height: auto;
     }
   }
 }
@@ -307,8 +307,8 @@ export default {
 @media (max-width: 700px) {
   .slider_container.open {
     .slider_comp {
-      width: 450px;
-      height: 550px;
+      width: 400px;
+      height: auto;
     }
   }
   .prodct_text_content {

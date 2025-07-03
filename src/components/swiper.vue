@@ -41,8 +41,7 @@ export default {
     this.swiper = new Swiper(".swiper-container", {
       modules: [Navigation, Pagination],
       direction: 'horizontal',
-   loop: true,
-    //speed: 200,
+     //speed: 200,
       slidesPerView: 1,
       pagination: {
         el: ".swiper-pagination",
@@ -67,6 +66,9 @@ export default {
 <style>
 img {
   cursor: pointer;
+}
+.swiper-button-disabled{
+  display: none;
 }
 .swiper-pagination-bullet {
   background: rgb(116, 115, 115);
