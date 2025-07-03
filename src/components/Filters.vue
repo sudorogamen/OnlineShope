@@ -2,13 +2,10 @@
   <div>
     <div class="filters_row">
       <button @click="openSlideBar($event)" class="filters_button">
-        Фильтрация
+        Фильтры
         <div class="filters_icon"><span></span><span></span><span></span></div>
       </button>
       <div class="sort_row">
-        <p>
-          Сортировка:
-        </p>
         <select
           v-model="this.$store.state.sortValue"
           @change="sortProduct($event)"
@@ -169,14 +166,21 @@ export default {
 };
 </script>
 <style scoped>
-.sort_row{
-  display: flex;
+.sort_row select{
+  cursor: pointer;
+}
+.sort_row {
+  align-self: flex-end;
+  font-size: 18px;
+  
 }
 .filters_row {
+  border-bottom: var(--border-color) 1px solid;
   font-size: 20px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 25px;
 }
 .filters_button {
   display: flex;
@@ -306,7 +310,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/* Для Firefox */
+
 input[type="number"] {
     -moz-appearance: textfield;
 }
@@ -346,10 +350,7 @@ input[type="number"] {
   opacity: 1;
 }
 
-.sort_row {
-  align-self: flex-end;
-  font-size: 14px;
-}
+
 select {
   background: var(--main-bg-color);
 }
@@ -369,7 +370,7 @@ select {
 
 }
   .sort_row, .filters_button{
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 </style>
