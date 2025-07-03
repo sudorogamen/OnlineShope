@@ -333,7 +333,7 @@ export default {
       position: relative;
       margin-inline: 10px;
       width: 100%;
-      height: 400px;
+      height: auto;
     }
   }
 
