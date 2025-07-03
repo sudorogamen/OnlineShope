@@ -23,7 +23,7 @@
         <div class="prodct_desc">{{ this.product.brand }}</div>
       </div>
       <div class="total_price">
-        <p>Итоговая цена: {{ this.productCount * this.product.price }}</p>
+        <p>Итоговая цена: {{ this.productCount * this.product.price }} ₽</p>
         <div class="prodct_count_box">
           <button
             class="couny_minus_btn"
@@ -342,6 +342,7 @@ export default {
   }
   .prodct_text_content {
     width: 100%;
+    font-size: 20px;
   }
 
   /* */
