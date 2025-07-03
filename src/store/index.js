@@ -61,7 +61,11 @@ export default createStore({
      );
     },
 
-
+ filtersByPrice(state) {
+   state.productsList = state.productsList.filter((item) => 
+        (state.activeFilters.prices.max >= item.price) && ( item.price >= state.activeFilters.prices.min)
+     );
+ },
     
 
 
@@ -136,6 +140,9 @@ export default createStore({
       if (state.activeFilters.brands.length) {
         getters.filtersByBrand
       }
+
+        getters.filtersByPrice
+
       //проверка сортировки
       if (state.sortValue) {
         getters.sortProduct;
@@ -148,7 +155,8 @@ export default createStore({
   },
   mutations: {
      activeFiltersReset(state) {
-  state.activeFilters = {...state.filters}
+  //state.activeFilters = {...state.filters}
+  state.activeFilters = JSON.parse(JSON.stringify(state.filters))
   this.getters.updateProducts
  
   

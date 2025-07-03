@@ -19,7 +19,6 @@
       </div>
       <div class="filters_slideBar">
         <button class="close_btn" @click="closeSlideBar($event)"></button>
-
         <div class="filters_content">
           <div class="filters_title">Filters</div>
           <div class="category_filters">
@@ -42,8 +41,30 @@
               ></checkboxList>
             </ul>
           </div>
+          <div class="price_range">
+            <p>By Price:</p>
+            <div class="price_range_inputs">
+              <label>
+                от
+                <input
+                  type="number"
+                  v-model="this.$store.state.activeFilters.prices.min"
+                  @input="changePrice($event)"
+                />
+              </label>
+              <label>
+                до
+                <input
+                  type="number"
+                  v-model="this.$store.state.activeFilters.prices.max"
+                  @input="changePrice($event)"
+                />
+              </label>
+            </div>
+          </div>
         </div>
-        <div ref="apply_btn" class="filters_slideBar_buttons">
+        <div ref="filters_slideBar_buttons" class="filters_slideBar_buttons">
+          <button class="reset_btn" @click="res($event)">Reset</button>
           <button class="apply_btn" @click="addFilters($event)">Apply</button>
         </div>
       </div>
@@ -62,18 +83,35 @@ export default {
     return {
       activeCategories: [],
       activeBrands: [],
+      saveFilters:{}
     };
   },
   props: {},
   methods: {
-
+    res(e) {
+      this.$store.state.activeFilters = JSON.parse(JSON.stringify(this.saveFilters)),
+      this.closeSlideBar(e);
+      this.$refs.filters_slideBar_buttons.classList.remove("active");
+    },
+    changePrice(e) {
+      e.target.closest(".price_range_inputs").classList.remove("err");
+      if (
+        this.$store.state.activeFilters.prices.min >
+        this.$store.state.activeFilters.prices.max
+      ) {
+        e.target.closest(".price_range_inputs").classList.add("err");
+        this.$refs.filters_slideBar_buttons.classList.remove("active");
+        return false;
+      }
+      this.$refs.filters_slideBar_buttons.classList.add("active");
+    },
     setActiveCategories(items) {
       this.activeCategories = items;
-      this.$refs.apply_btn.classList.add("active") 
+      this.$refs.filters_slideBar_buttons.classList.add("active");
     },
     setActiveBrands(items) {
       this.activeBrands = items;
-      this.$refs.apply_btn.classList.add("active") 
+      this.$refs.filters_slideBar_buttons.classList.add("active");
     },
 
     addFilters(e) {
@@ -81,12 +119,13 @@ export default {
       this.$store.state.activeFilters.brands = this.activeBrands;
       this.$store.getters.updateProducts;
       this.closeSlideBar(e);
-      this.$refs.apply_btn.classList.remove("active");
+      this.$refs.filters_slideBar_buttons.classList.remove("active");
     },
     sortProduct(e) {
       this.$store.getters.sortProduct;
     },
     openSlideBar(e) {
+      this.saveFilters = JSON.parse(JSON.stringify(this.$store.state.activeFilters)),
       (this.activeCategories = this.$store.state.activeFilters.category),
         (this.activeBrands = this.$store.state.activeFilters.brands),
         (document.querySelector("body").style.overflow = "hidden");
@@ -105,8 +144,7 @@ export default {
         .classList.remove("open");
     },
   },
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 <style scoped>
@@ -176,6 +214,7 @@ export default {
 }
 
 .filters_slideBar_buttons {
+  padding: 10px;
   position: absolute;
   visibility: hidden;
   bottom: 0;
@@ -190,22 +229,60 @@ export default {
   transition: 0.6s;
   background: none;
 }
+
+.reset_btn {
+  background: rgb(71, 71, 71);
+}
+.apply_btn {
+  background: var(--accent-color);
+}
+.reset_btn,
 .apply_btn {
   transition: 0.6s;
   opacity: 0;
-  margin: 0 20px;
-  background: var(--accent-color);
   padding-block: 8px;
   border-radius: 10px;
   width: 100%;
-  max-width: 400px;
 }
+.price_range {
+  padding-right: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.price_range_inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price_range_inputs label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.price_range_inputs input {
+  max-width: 150px;
+  width: 80%;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  text-align: center;
+}
+.price_range_inputs.err input,
+.price_range_inputs.err input:focus {
+  border: 1px solid red;
+}
+.price_range_inputs input:focus {
+  border: 1px solid var(--border-color);
+}
+
 .filters_slideBar_buttons.active {
   height: 60px;
   visibility: visible;
   opacity: 1;
 }
-.filters_slideBar_buttons.active .apply_btn {
+.filters_slideBar_buttons.active button {
   opacity: 1;
 }
 

@@ -262,6 +262,11 @@ input:focus[type="search"] {
   border-radius: 5px;
   padding: 10px;
   border: 1px solid var(--border-color);
+  transition: all 0.5s ease-in-out;
+}
+.header_cart_button.show{
+  box-shadow: 0 0 15px var(--accent-color);
+  transform: scale(1.05);
 }
 .empty_cart {
   font-size: 20px;
